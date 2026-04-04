@@ -485,32 +485,3 @@ function toast(m){const t=document.getElementById('toast');t.textContent=m;t.cla
 
 window.addEventListener('DOMContentLoaded',()=>renderAll());
 </script>
-/* ====== ADMIN AUTH ====== */
-const ADMIN_PASSWORD = "KSUMC2026";
-
-function isAdmin(){
-  return sessionStorage.getItem("admin") === "true";
-}
-
-function adminLogin(){
-  const p = prompt("أدخل كلمة مرور الأدمن:");
-  if(p === ADMIN_PASSWORD){
-    sessionStorage.setItem("admin", "true");
-    alert("✅ تم الدخول كأدمن");
-    location.reload();
-  } else {
-    alert("❌ كلمة المرور غير صحيحة");
-  }
-}
-
-/* ====== باقي كود الداشبورد ====== */
-// باقي الكود الموجود عندك هنا
-</script>document.addEventListener("DOMContentLoaded", () => {
-  if (isAdmin()) {
-    const btn = document.getElementById("editBtn");
-    if(btn) btn.style.display = "inline-flex";
-  }
-});
-  
-</body>
-</html>
