@@ -143,6 +143,9 @@ tr:hover td{background:var(--kb-lt)}
    <!-- زر دخول الأدمن --> <button class="abtn" onclick="adminLogin()">🔐 دخول الأدمن</button>  <!-- زر تعديل البيانات (يظهر فقط للأدمن) --> <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">   ✏️ تعديل البيانات </button>
   <button class="abtn" onclick="openShare()">🔗 مشاركة</button>
 
+  <!-- زر دخول الأدمن -->
+  <button class="abtn" onclick="adminLogin()">🔐 دخول الأدمن</button>
+
   <!-- زر تعديل البيانات (يظهر فقط للأدمن) -->
   <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">
     ✏️ تعديل البيانات
@@ -486,9 +489,17 @@ function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classL
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
 
 window.addEventListener('DOMContentLoaded',()=>renderAll());
-<script>
-
-/* ======================= ADMIN AUTH ======================= */
+</script>document.addEventListener("DOMContentLoaded",()=>{
+  if(isAdmin()){
+    document.getElementById("editBtn").style.display="inline-flex";
+  }
+});
+</script>button class="abtn" onclick="adminLogin()">🔐 دخول الأدمن</button>
+<button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">
+✏️ تعديل البيانات
+</button>
+</script>
+  /* ======================= ADMIN AUTH ======================= */
 const ADMIN_PASSWORD = "KSUMC2026";
 
 function isAdmin(){
@@ -504,4 +515,40 @@ function adminLogin(){
   }else{
     alert("❌ كلمة المرور غير صحيحة");
   }
+}
+
+/* ✅ إظهار زر التعديل فقط للأدمن */
+document.addEventListener("DOMContentLoaded", () => {
+  if (isAdmin()) {
+    const btn = document.getElementById("editBtn");
+    if (btn) btn.style.display = "inline-flex";
+  }
+});
+document.addEventListener("DOMContentLoaded", () => {
+  if (isAdmin()) {
+    const btn = document.getElementById("editBtn");
+    if (btn) btn.style.display = "inline-flex";
+  }
+});
+``/* ================== EDITOR ================== */
+function openEditor(){
+  const minp = document.getElementById('minp');
+
+  if(!minp){
+    alert('خطأ: نافذة التعديل غير موجودة');
+    return;
+  }
+
+  minp.innerHTML = MN.map((m,i)=>`
+    <div class="mf">
+      <label>${m} — منقولة</label>
+      <input type="number" id="inT${i}" value="${D_T[i] || 0}" min="0">
+    </div>
+    <div class="mf">
+      <label>${m} — غير منقولة</label>
+      <input type="number" id="inN${i}" value="${D_N[i] || 0}" min="0">
+    </div>
+  `).join('');
+
+  document.getElementById('emod').classList.add('open');
 }
