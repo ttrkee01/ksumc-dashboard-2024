@@ -140,7 +140,7 @@ tr:hover td{background:var(--kb-lt)}
       </div>
     </div>
     <div class="hdr-yr"><div class="y">2026</div><div class="ys">التقرير السنوي</div></div>
-   <div class="hdr-acts">
+   <!-- زر دخول الأدمن --> <button class="abtn" onclick="adminLogin()">🔐 دخول الأدمن</button>  <!-- زر تعديل البيانات (يظهر فقط للأدمن) --> <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">   ✏️ تعديل البيانات </button>
   <button class="abtn" onclick="openShare()">🔗 مشاركة</button>
 
   <!-- زر دخول الأدمن -->
@@ -498,8 +498,9 @@ window.addEventListener('DOMContentLoaded',()=>renderAll());
 <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">
 ✏️ تعديل البيانات
 </button>
-</script>/* ======================= ADMIN AUTH ======================= */
-const ADMIN_PASSWORD = "KSUMC2026"; // يمكنك تغييرها
+</script>
+  /* ======================= ADMIN AUTH ======================= */
+const ADMIN_PASSWORD = "KSUMC2026";
 
 function isAdmin(){
   return sessionStorage.getItem("admin") === "true";
@@ -511,15 +512,15 @@ function adminLogin(){
     sessionStorage.setItem("admin","true");
     alert("✅ تم الدخول كأدمن");
     location.reload();
-  } else {
+  }else{
     alert("❌ كلمة المرور غير صحيحة");
   }
 }
-/* ✅ إظهار زر التعديل للأدمن فقط */
+
+/* ✅ إظهار زر التعديل فقط للأدمن */
 document.addEventListener("DOMContentLoaded", () => {
   if (isAdmin()) {
     const btn = document.getElementById("editBtn");
     if (btn) btn.style.display = "inline-flex";
   }
 });
-``
