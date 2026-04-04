@@ -552,13 +552,3 @@ function openEditor(){
 
   document.getElementById('emod').classList.add('open');
 }
-
-function applyData(){
-  D_T = D_T.map((_,i)=> Number(document.getElementById('inT'+i).value) || 0);
-  D_N = D_N.map((_,i)=> Number(document.getElementById('inN'+i).value) || 0);
-  D   = D_T.map((v,i)=> v + D_N[i]);
-
-  document.getElementById('emod').classList.remove('open');
-  renderAll();
-  toast('✅ تم تحديث البيانات بنجاح');
-}
