@@ -513,4 +513,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ====== باقي كود الداشبورد ====== */
-</script>
+</script>document.addEventListener("DOMContentLoaded", () => {
+  if (isAdmin()) {
+    document.getElementById("editBtn").style.display = "inline-flex";
+  }
+});
