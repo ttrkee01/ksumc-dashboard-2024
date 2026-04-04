@@ -498,7 +498,7 @@ window.addEventListener('DOMContentLoaded',()=>renderAll());
 <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">
 ✏️ تعديل البيانات
 </button>
-  <script>/* ======================= ADMIN AUTH ======================= */
+</script>/* ======================= ADMIN AUTH ======================= */
 const ADMIN_PASSWORD = "KSUMC2026"; // يمكنك تغييرها
 
 function isAdmin(){
@@ -515,7 +515,6 @@ function adminLogin(){
     alert("❌ كلمة المرور غير صحيحة");
   }
 }
-
 /* ✅ إظهار زر التعديل للأدمن فقط */
 document.addEventListener("DOMContentLoaded", () => {
   if (isAdmin()) {
