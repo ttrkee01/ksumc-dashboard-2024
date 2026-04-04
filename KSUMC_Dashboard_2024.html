@@ -484,7 +484,29 @@ function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classL
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
 
 window.addEventListener('DOMContentLoaded',()=>renderAll());
-</script> /* ====== 2026 OPERATIONAL DATA ====== */
+</script> <script/cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js
+<script>
+let DATA = [];
+
+function loadCSV() {
+  Papa.parse('KSUMC_2026.csv', {
+    download: true,
+    header: true,
+    complete: function(results) {
+      DATA = results.data.map(r => ({
+        c: +r.critical,
+        t: +r.transport,
+        tr:+r.training,
+        p: +r.participation
+      }));
+      renderAll(); // إعادة رسم الداشبورد
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', loadCSV);
+</script>
+/* ====== 2026 OPERATIONAL DATA ====== */
 let DATA = [
   { month:'يناير',   c:50, t:50, tr:50, p:100 },
   { month:'فبراير',  c:66, t:66, tr:66, p:132 },
@@ -501,6 +523,5 @@ let DATA = [
   { month:'أكتوبر',  c:50, t:50, tr:50, p:100 },
   { month:'نوفمبر',  c:67, t:67, tr:67, p:134 },
   { month:'ديسمبر',  c:90, t:90, tr:90, p:180 }
-];
 </body>
 </html>
