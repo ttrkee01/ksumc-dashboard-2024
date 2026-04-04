@@ -524,3 +524,41 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btn) btn.style.display = "inline-flex";
   }
 });
+document.addEventListener("DOMContentLoaded", () => {
+  if (isAdmin()) {
+    const btn = document.getElementById("editBtn");
+    if (btn) btn.style.display = "inline-flex";
+  }
+});
+``/* ================== EDITOR ================== */
+function openEditor(){
+  const minp = document.getElementById('minp');
+
+  if(!minp){
+    alert('خطأ: نافذة التعديل غير موجودة');
+    return;
+  }
+
+  minp.innerHTML = MN.map((m,i)=>`
+    <div class="mf">
+      <label>${m} — منقولة</label>
+      <input type="number" id="inT${i}" value="${D_T[i] || 0}" min="0">
+    </div>
+    <div class="mf">
+      <label>${m} — غير منقولة</label>
+      <input type="number" id="inN${i}" value="${D_N[i] || 0}" min="0">
+    </div>
+  `).join('');
+
+  document.getElementById('emod').classList.add('open');
+}
+
+function applyData(){
+  D_T = D_T.map((_,i)=> Number(document.getElementById('inT'+i).value) || 0);
+  D_N = D_N.map((_,i)=> Number(document.getElementById('inN'+i).value) || 0);
+  D   = D_T.map((v,i)=> v + D_N[i]);
+
+  document.getElementById('emod').classList.remove('open');
+  renderAll();
+  toast('✅ تم تحديث البيانات بنجاح');
+}
