@@ -1,11 +1,59 @@
-<script>
-/* ===================== ثوابت ===================== */
-const MN=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
-const QN=['الربع الأول','الربع الثاني','الربع الثالث','الربع الرابع'];
-const QC=['#0084BD','#005f8a','#3BAAD4','#748995'];
-const BC=[...Array(3).fill('#0084BD'),...Array(3).fill('#005f8a'),...Array(3).fill('#3BAAD4'),...Array(3).fill('#748995')];
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KSUMC — لوحة الأداء التشغيلي 2026</title>
 
-/* ===================== البيانات ===================== */
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+body{font-family:'Cairo',sans-serif;background:#f4f5f7;margin:0}
+.header{background:#0084BD;color:#fff;padding:14px}
+.main{max-width:1200px;margin:auto;padding:20px}
+.abtn{background:#ffffff33;border:1px solid #ffffff55;color:#fff;border-radius:20px;padding:6px 14px;cursor:pointer;margin:3px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:20px}
+canvas{height:240px !important}
+.modal-ov{display:none;position:fixed;inset:0;background:#00000066;justify-content:center;align-items:center}
+.modal-ov.open{display:flex}
+.modal{background:#fff;border-radius:12px;padding:20px;max-width:600px;width:95%}
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.mf label{font-size:12px;font-weight:600}
+.mf input{width:100%;padding:6px;font-size:14px}
+.btnapply{background:#0084BD;color:#fff;border:none;padding:10px 18px;border-radius:8px}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  لوحة الأداء التشغيلي 2026 — KSUMC
+  <button class="abtn" onclick="openEditor()">✏️ تعديل البيانات</button>
+</header>
+
+<div class="main">
+  <div class="card">
+    <canvas id="c1"></canvas>
+  </div>
+</div>
+
+<!-- Editor Modal -->
+<div class="modal-ov" id="emod">
+  <div class="modal">
+    <h3>تعديل الحالات الطارئة (منقولة / غير منقولة)</h3>
+    <div class="mgrid" id="minp"></div>
+    <br>
+    <button class="btnapply" onclick="applyData()">✅ حفظ</button>
+    <button class="abtn" onclick="closeEd()">إغلاق</button>
+  </div>
+</div>
+
+<script>
+/* ================== الثوابت ================== */
+const MN = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+
+/* ================== البيانات ================== */
 // حالات طارئة منقولة
 let D_T = [30,40,45,55,40,20,35,50,30,28,38,55];
 
@@ -15,87 +63,72 @@ let D_N = [20,26,32,35,30,20,25,30,25,22,29,35];
 // الإجمالي
 let D = D_T.map((v,i)=>v + D_N[i]);
 
-const CHS={};
+let CH = null;
 
-/* ===================== أدوات الرسم ===================== */
-const BASE={
-  responsive:true,
-  maintainAspectRatio:false,
-  plugins:{legend:{display:false}},
-  scales:{
-    x:{ticks:{font:{family:'Cairo',size:10}}},
-    y:{beginAtZero:true,ticks:{font:{family:'Cairo',size:10}}}
-  }
-};
+/* ================== الرسم ================== */
+function renderChart(){
+  if(CH) CH.destroy();
 
-function dc(id){ if(CHS[id]){CHS[id].destroy(); delete CHS[id]; } }
-function mk(id,cfg){ dc(id); CHS[id]=new Chart(document.getElementById(id),cfg); }
-
-function ma(a,w){
-  return a.map((_,i)=>{
-    const s=a.slice(Math.max(0,i-1),i+2);
-    return Math.round(s.reduce((x,y)=>x+y,0)/s.length);
-  });
-}
-
-/* ===================== العرض ===================== */
-function renderMainCharts(){
-  // الرسم المكدس (منقولة / غير منقولة)
-  mk('c1',{
+  CH = new Chart(document.getElementById('c1'), {
     type:'bar',
     data:{
       labels:MN,
       datasets:[
-        {label:'طارئة منقولة',data:D_T,backgroundColor:'#0084BD'},
-        {label:'طارئة غير منقولة',data:D_N,backgroundColor:'#E35D6A'}
+        {
+          label:'حالات طارئة منقولة',
+          data:D_T,
+          backgroundColor:'#0084BD'
+        },
+        {
+          label:'حالات طارئة غير منقولة',
+          data:D_N,
+          backgroundColor:'#E35D6A'
+        }
       ]
     },
     options:{
-      ...BASE,
+      responsive:true,
+      maintainAspectRatio:false,
       plugins:{legend:{display:true}},
-      scales:{x:{stacked:true},y:{stacked:true}}
+      scales:{
+        x:{stacked:true},
+        y:{stacked:true,beginAtZero:true}
+      }
     }
   });
 }
 
-function renderAll(){
-  const qt=[
-    D.slice(0,3).reduce((a,b)=>a+b,0),
-    D.slice(3,6).reduce((a,b)=>a+b,0),
-    D.slice(6,9).reduce((a,b)=>a+b,0),
-    D.slice(9,12).reduce((a,b)=>a+b,0)
-  ];
-  const tot=qt.reduce((a,b)=>a+b,0);
-
-  document.getElementById('kv1').textContent=tot.toLocaleString();
-
-  D.forEach((v,i)=>{
-    const el=document.getElementById('md'+i);
-    if(el) el.textContent=v;
-  });
-
-  renderMainCharts();
-}
-
-/* ===================== محرر الأدمن ===================== */
+/* ================== المحرر ================== */
 function openEditor(){
-  document.getElementById('minp').innerHTML = MN.map((m,i)=>`
-    <div class="mf"><label>${m} — منقولة</label><input id="inT${i}" type="number" value="${D_T[i]}"></div>
-    <div class="mf"><label>${m} — غير منقولة</label><input id="inN${i}" type="number" value="${D_N[i]}"></div>
-  `).join('');
+  document.getElementById('minp').innerHTML =
+    MN.map((m,i)=>`
+      <div class="mf">
+        <label>${m} — منقولة</label>
+        <input type="number" id="inT${i}" value="${D_T[i]}">
+      </div>
+      <div class="mf">
+        <label>${m} — غير منقولة</label>
+        <input type="number" id="inN${i}" value="${D_N[i]}">
+      </div>
+    `).join('');
   document.getElementById('emod').classList.add('open');
 }
 
-function closeEd(){ document.getElementById('emod').classList.remove('open'); }
-
-function applyData(){
-  D_T=D_T.map((_,i)=>+document.getElementById('inT'+i).value||0);
-  D_N=D_N.map((_,i)=>+document.getElementById('inN'+i).value||0);
-  D=D_T.map((v,i)=>v+D_N[i]);
-  closeEd();
-  renderAll();
+function closeEd(){
+  document.getElementById('emod').classList.remove('open');
 }
 
-/* ===================== تحميل ===================== */
-window.addEventListener('DOMContentLoaded',renderAll);
+function applyData(){
+  D_T = D_T.map((_,i)=>+document.getElementById('inT'+i).value || 0);
+  D_N = D_N.map((_,i)=>+document.getElementById('inN'+i).value || 0);
+  D   = D_T.map((v,i)=>v + D_N[i]);
+  closeEd();
+  renderChart();
+}
+
+/* ================== تشغيل ================== */
+window.addEventListener('DOMContentLoaded', renderChart);
 </script>
+
+</body>
+</html>
