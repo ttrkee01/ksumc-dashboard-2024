@@ -164,7 +164,6 @@ tr:hover td{background:var(--kb-lt)}
   <div class="ebanner">
     <span class="ei">📋 البيانات قابلة للتعديل المباشر</span>
     <span class="es">عدّل أرقام الحالات وستتحدث جميع الرسوم والمؤشرات فوراً — والرابط يحتفظ بالبيانات للمشاركة</span>
-    <button class="btnprim" onclick="openEditor()">تعديل البيانات ✏️</button>
   </div>
   <div class="kpi-grid">
     <div class="kpi" style="--c:#0084BD"><div class="kpi-ico">🏥</div><div class="kpi-lbl">إجمالي الحالات الحرجة</div><div class="kpi-val" id="kv1">795</div><div class="kpi-sub"><span class="kpi-tag">منقولة</span> 12 شهراً</div></div>
@@ -303,7 +302,6 @@ tr:hover td{background:var(--kb-lt)}
   <div class="sec"><span>البيانات التفصيلية الكاملة</span></div>
   <div class="card" style="margin-bottom:12px">
     <div class="ch"><div><div class="ct">جدول الأداء الشهري</div><div class="cs">جميع المؤشرات لكل شهر</div></div>
-      <button class="btnprim" style="margin:0" onclick="openEditor()">تعديل ✏️</button></div>
     <div class="tw"><table><thead><tr><th>#</th><th>الشهر</th><th>الربع</th><th>حالات حرجة</th><th>نقل داخلي</th><th>نقل خارجي</th><th>ميدفاك</th><th>تدريب</th><th>مشاركات</th></tr></thead><tbody id="dtb"></tbody></table></div>
   </div>
   <div class="card">
@@ -324,7 +322,6 @@ tr:hover td{background:var(--kb-lt)}
 <!-- EDITOR MODAL -->
 <div class="modal-ov" id="emod">
   <div class="modal">
-    <div class="mt">✏️ تعديل بيانات الأداء الشهري</div>
     <div class="ms">أدخل عدد الحالات الحرجة المنقولة لكل شهر — ستتحدث جميع الرسوم والمؤشرات تلقائياً، والرابط يحفظ البيانات للمشاركة</div>
     <div class="mgrid" id="minp"></div>
     <div class="macts">
@@ -515,8 +512,3 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-/* ====== باقي كود الداشبورد ====== */
-</script> <button class="abtn" onclick="adminLogin()">🔐 دخول الأدمن</button>
-<button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">
-✏️ تعديل البيانات
-</button>
