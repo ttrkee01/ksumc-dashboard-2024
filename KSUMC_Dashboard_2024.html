@@ -484,6 +484,23 @@ function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classL
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
 
 window.addEventListener('DOMContentLoaded',()=>renderAll());
-</script>
+</script> /* ====== 2026 OPERATIONAL DATA ====== */
+let DATA = [
+  { month:'يناير',   c:50, t:50, tr:50, p:100 },
+  { month:'فبراير',  c:66, t:66, tr:66, p:132 },
+  { month:'مارس',    c:77, t:77, tr:77, p:154 },
+
+  { month:'أبريل',   c:90, t:90, tr:90, p:180 },
+  { month:'مايو',    c:70, t:70, tr:70, p:140 },
+  { month:'يونيو',   c:40, t:40, tr:40, p:80  },
+
+  { month:'يوليو',   c:60, t:60, tr:60, p:120 },
+  { month:'أغسطس',   c:80, t:80, tr:80, p:160 },
+  { month:'سبتمبر',  c:55, t:55, tr:55, p:110 },
+
+  { month:'أكتوبر',  c:50, t:50, tr:50, p:100 },
+  { month:'نوفمبر',  c:67, t:67, tr:67, p:134 },
+  { month:'ديسمبر',  c:90, t:90, tr:90, p:180 }
+];
 </body>
 </html>
