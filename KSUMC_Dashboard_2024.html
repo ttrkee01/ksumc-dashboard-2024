@@ -486,20 +486,15 @@ function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classL
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
 
 window.addEventListener('DOMContentLoaded',()=>renderAll());
-</script>document.addEventListener("DOMContentLoaded",()=>{
-  if(isAdmin()){
-    document.getElementById("editBtn").style.display="inline-flex";
-  }
-});
-</script>button class="abtn" onclick="adminLogin()">🔐 دخول الأدمن</button>
-<button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">
-✏️ تعديل البيانات
-</button>
-</script>/* ======================= ADMIN AUTH ======================= */
+<script>
+
+/* ======================= ADMIN AUTH ======================= */
 const ADMIN_PASSWORD = "KSUMC2026";
+
 function isAdmin(){
   return sessionStorage.getItem("admin") === "true";
 }
+
 function adminLogin(){
   const p = prompt("أدخل كلمة مرور الأدمن:");
   if(p === ADMIN_PASSWORD){
@@ -510,64 +505,19 @@ function adminLogin(){
     alert("❌ كلمة المرور غير صحيحة");
   }
 }
-/* ✅ إظهار زر التعديل فقط للأدمن */
+
 document.addEventListener("DOMContentLoaded", () => {
   if (isAdmin()) {
     const btn = document.getElementById("editBtn");
     if (btn) btn.style.display = "inline-flex";
   }
 });
-document.addEventListener("DOMContentLoaded", () => {
-  if (isAdmin()) {
-    const btn = document.getElementById("editBtn");
-    if (btn) btn.style.display = "inline-flex";
-  }
-});
-``/* ================== EDITOR ================== */
-function openEditor(){
-  const minp = document.getElementById('minp');
-</script>if(!minp){
-    alert('خطأ: نافذة التعديل غير موجودة');
-    return;
-  }
-  minp.innerHTML = MN.map((m,i)=>`
-    <div class="mf">
-      <label>${m} — منقولة</label>
-      <input type="number" id="inT${i}" value="${D_T[i] || 0}" min="0">
-    </div>
-    <div class="mf">
-      <label>${m} — غير منقولة</label>
-      <input type="number" id="inN${i}" value="${D_N[i] || 0}" min="0">
-    </div>
-  `).join('');
-  document.getElementById('emod').classList.add('open');
-  
-  </script>/* ======================= ADMIN AUTH ======================= */
-const ADMIN_PASSWORD = "KSUMC2026";
-function isAdmin(){
-  return sessionStorage.getItem("admin") === "true";
-}
-function adminLogin(){
-  const p = prompt("أدخل كلمة مرور الأدمن:");
-  if(p === ADMIN_PASSWORD){
-    sessionStorage.setItem("admin","true");
-    alert("✅ تم الدخول كأدمن");
-    location.reload();
-  } else {
-  </script>alert("❌ كلمة المرور غير صحيحة");
-  }
-}
-document.addEventListener("DOMContentLoaded", () => {
-  if (isAdmin()) {
-    const btn = document.getElementById("editBtn");
-    if (btn) btn.style.display = "inline-flex";
-  }
-});
+
 /* ======================= EDITOR ======================= */
 function openEditor(){
   const minp = document.getElementById('minp');
   if(!minp){
-    alert('خطأ: نافذة التعديل غير موجودة');
+    alert('❌ نافذة التعديل غير موجودة');
     return;
   }
 
@@ -577,11 +527,15 @@ function openEditor(){
       <input type="number" id="in${i}" value="${D[i]}" min="0">
     </div>
   `).join('');
-</script>document.getElementById('emod').classList.add('open');
+
+  document.getElementById('emod').classList.add('open');
 }
-</script>function applyData(){
+
+function applyData(){
   D = D.map((_,i)=> Number(document.getElementById('in'+i).value) || 0);
   document.getElementById('emod').classList.remove('open');
   renderAll();
   toast('✅ تم تحديث اللوحة');
 }
+
+</script>
