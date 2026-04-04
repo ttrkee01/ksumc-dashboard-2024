@@ -484,7 +484,11 @@ function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classL
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
 
 window.addEventListener('DOMContentLoaded',()=>renderAll());
-</script>
+</script>document.addEventListener("DOMContentLoaded",()=>{
+  if(isAdmin()){
+    document.getElementById("editBtn").style.display="inline-flex";
+  }
+});
 <script>
 /* ====== ADMIN AUTH ====== */
 const ADMIN_PASSWORD = "KSUMC2026";
