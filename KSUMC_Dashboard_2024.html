@@ -366,7 +366,7 @@ const QN=['الربع الأول','الربع الثاني','الربع الثا
 const QC=['#0084BD','#005f8a','#3BAAD4','#748995'];
 const BC=[...Array(3).fill('#0084BD'),...Array(3).fill('#005f8a'),...Array(3).fill('#3BAAD4'),...Array(3).fill('#748995')];
 
-let D=[50,66,77,90,70,40,60,80,55,50,67,90];
+// حالات طارئة منقولة let D_T = [30,40,45,55,40,20,35,50,30,28,38,55];  // حالات طارئة غير منقولة let D_N = [20,26,32,35,30,20,25,30,25,22,29,35];  // الحالات الطارئة الإجمالية (محسوبة تلقائيًا) let D = D_T.map((v,i)=> v + D_N[i]);
 const CHS={};
 
 function loadHash(){try{const h=location.hash.slice(1);if(h){const d=JSON.parse(atob(h));if(Array.isArray(d)&&d.length===12)D=d;}}catch(e){}}
@@ -434,7 +434,7 @@ function renderAll(){
   try{history.replaceState(null,'','#'+btoa(JSON.stringify(d)));}catch(e){}
 }
 
-function renderMainCharts(d,qt,tot){
+mk('c1',{   type:'bar',   data:{     labels: MN,     datasets:[       {         label:'حالات طارئة منقولة',         data: D_T,         backgroundColor:'#0084BD'       },       {         label:'حالات طارئة غير منقولة',         data: D_N,         backgroundColor:'#E35D6A'       }     ]   },   options:{     ...BASE,     plugins:{ legend:{display:true} },     scales:{       x:{ stacked:true },       y:{ stacked:true, beginAtZero:true }     }   } });
   const maV=ma(d,3);
   mk('c1',{type:'bar',data:{labels:MN,datasets:[{data:d,backgroundColor:BC,borderRadius:5,borderSkipped:false}]},options:{...BASE,scales:{...BASE.scales,x:{...BASE.scales.x,ticks:{...BASE.scales.x.ticks,maxRotation:45}}}}});
   mk('c2',{type:'doughnut',data:{labels:QN.map((q,i)=>q+' — '+qt[i]),datasets:[{data:qt,backgroundColor:QC,borderWidth:3,borderColor:'#fff',hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:true,position:'bottom',labels:{font:{family:'Cairo',size:11},color:'#1a1a1a',boxWidth:12,padding:7}}}}});
@@ -466,12 +466,12 @@ function renderCmpCharts(d,qt){
   mk('cc3',{type:'line',data:{labels:MN,datasets:[{data:d,borderColor:'#0084BD',backgroundColor:'rgba(0,132,189,.08)',tension:.4,fill:true,pointRadius:4,pointBackgroundColor:'#fff',pointBorderColor:'#0084BD',pointBorderWidth:2,borderWidth:2.5,label:'الحالات'},{data:maV,borderColor:'#748995',borderWidth:1.8,borderDash:[5,4],tension:.4,pointRadius:0,fill:false,label:'متوسط متحرك'}]},options:{...BASE,plugins:{legend:{display:true,labels:{font:{family:'Cairo',size:11},color:'#748995',boxWidth:10,padding:9}}}}});
 }
 
-function openEditor(){
+function openEditor(){   document.getElementById('minp').innerHTML = MN.map((m,i)=>`     <div class="mf">       <label>${m} — منقولة</label>       <input type="number" id="inT${i}" value="${D_T[i]}" min="0">     </div>     <div class="mf">       <label>${m} — غير منقولة</label>       <input type="number" id="inN${i}" value="${D_N[i]}" min="0">     </div>   `).join('');   document.getElementById('emod').classList.add('open'); }
   document.getElementById('minp').innerHTML=D.map((v,i)=>`<div class="mf"><label>${MN[i]}</label><input type="number" id="in${i}" value="${v}" min="0" max="9999"></div>`).join('');
   document.getElementById('emod').classList.add('open');
 }
 function closeEd(){document.getElementById('emod').classList.remove('open');}
-function applyData(){
+function applyData(){   D_T = D_T.map((_,i)=> +document.getElementById('inT'+i).value || 0);   D_N = D_N.map((_,i)=> +document.getElementById('inN'+i).value || 0);    // إعادة حساب الإجمالي   D = D_T.map((v,i)=> v + D_N[i]);    closeEd();   renderAll();   toast('✅ تم تحديث الحالات الطارئة (منقولة / غير منقولة)'); }
   D=D.map((_,i)=>Math.max(0,Math.min(9999,parseInt(document.getElementById('in'+i).value)||0)));
   closeEd();renderAll();toast('✅ تم تحديث اللوحة بنجاح!');
 }
