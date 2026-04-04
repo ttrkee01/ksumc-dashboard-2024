@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KSUMC — لوحة الأداء التشغيلي 2024</title>
+<title>KSUMC — لوحة الأداء التشغيلي 2026</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -262,7 +262,7 @@ tr:hover td{background:var(--kb-lt)}
 <!-- Q4 -->
 <div id="q4" class="page">
   <div class="qhero" style="background:linear-gradient(135deg,#4a5568,#748995)">
-    <div class="qht"><div><div class="qht-title">الربع الرابع — أكتوبر · نوفمبر · ديسمبر</div><div class="qht-sub">★ الربع الأقوى — أعلى أداء سنوي في 2024</div></div>
+    <div class="qht"><div><div class="qht-title">الربع الرابع — أكتوبر · نوفمبر · ديسمبر</div><div class="qht-sub">★  الربع الأقوى — أعلى أداء سنوي في  2026</div></div>
       <div class="qtot"><div class="qtot-n" id="qt4">207</div><div class="qtot-l">إجمالي الحالات</div></div></div>
     <div class="qmo">
       <div class="mc"><div class="mn">أكتوبر</div><div class="mv" id="md9">50</div></div>
@@ -270,7 +270,7 @@ tr:hover td{background:var(--kb-lt)}
       <div class="mc"><div class="mn">ديسمبر</div><div class="mv" id="md11">90</div></div>
     </div>
   </div>
-  <div class="qi"><p>كان الربع الرابع ختاماً مُشرّفاً للعام؛ توّج ديسمبر العام بـ 90 حالة مساوياً لذروة أبريل ومتصدّراً المشترك سنوياً. مجموع 207 حالات هو الأعلى ربعياً طوال 2024، ويُبشّر بمنطلق قوي لعام 2025 تأكيداً للريادة الطبية لمستشفيات المدينة الطبية الجامعية بجامعة الملك سعود.</p></div>
+  <div class="qi"><p>كان الربع الرابع ختاماً مُشرّفاً للعام؛ توّج ديسمبر العام بـ 90 حالة مساوياً لذروة أبريل ومتصدّراً المشترك سنوياً. مجموع 207 حالات هو الأعلى ربعياً طوال 2025، ويُبشّر بمنطلق قوي لعام 2026 تأكيداً للريادة الطبية لمستشفيات المدينة الطبية الجامعية بجامعة الملك سعود.</p></div>
   <div class="g2b">
     <div class="card"><div class="ct" style="margin-bottom:11px">المنحنى الشهري — ق٤</div><div class="cw" style="height:195px"><canvas id="cq4a"></canvas></div></div>
     <div class="card"><div class="ct" style="margin-bottom:11px">التوزيع النسبي</div><div class="cw" style="height:195px"><canvas id="cq4b"></canvas></div></div>
@@ -319,7 +319,7 @@ tr:hover td{background:var(--kb-lt)}
 
 </div><!-- /main -->
 
-<div class="footer">المدينة الطبية الجامعية — جامعة الملك سعود · Riyadh, KSA · KSUMC Dashboard 2024 &nbsp;|&nbsp; جميع البيانات سرية للاستخدام الداخلي</div>
+<div class="footer">المدينة الطبية الجامعية — جامعة الملك سعود · Riyadh, KSA · KSUMC Dashboard 2026 &nbsp;|&nbsp; جميع البيانات سرية للاستخدام الداخلي</div>
 <div class="stripe"></div>
 
 <!-- EDITOR MODAL -->
@@ -473,7 +473,7 @@ function applyData(){
 function openShare(){document.getElementById('surl').value=location.href;document.getElementById('smod').classList.add('open');}
 function closeShare(){document.getElementById('smod').classList.remove('open');}
 function cpyURL(){try{navigator.clipboard.writeText(location.href);}catch(e){}document.getElementById('surl').select();document.execCommand('copy');toast('✅ تم نسخ الرابط!');}
-function wa(){window.open('https://wa.me/?text='+encodeURIComponent('لوحة الأداء الطبي — المدينة الطبية الجامعية KSUMC 2024\n'+location.href));}
+function wa(){window.open('https://wa.me/?text='+encodeURIComponent('لوحة الأداء الطبي — المدينة الطبية الجامعية KSUMC 2026\n'+location.href));}
 function em(){window.open('mailto:?subject=لوحة الأداء KSUMC 2024&body='+encodeURIComponent(location.href));}
 function exportCSV(){
   const rows=[['الشهر','الربع','حالات حرجة','نقل طبي','ميدفاك','تدريب','مشاركات'],...D.map((v,i)=>[MN[i],QN[Math.floor(i/3)],v,v,v,v,v*2])];
