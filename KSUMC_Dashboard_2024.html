@@ -495,14 +495,11 @@ window.addEventListener('DOMContentLoaded',()=>renderAll());
 <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">
 ✏️ تعديل البيانات
 </button>
-</script>
-  /* ======================= ADMIN AUTH ======================= */
+</script>/* ======================= ADMIN AUTH ======================= */
 const ADMIN_PASSWORD = "KSUMC2026";
-
 function isAdmin(){
   return sessionStorage.getItem("admin") === "true";
 }
-
 function adminLogin(){
   const p = prompt("أدخل كلمة مرور الأدمن:");
   if(p === ADMIN_PASSWORD){
@@ -513,7 +510,6 @@ function adminLogin(){
     alert("❌ كلمة المرور غير صحيحة");
   }
 }
-
 /* ✅ إظهار زر التعديل فقط للأدمن */
 document.addEventListener("DOMContentLoaded", () => {
   if (isAdmin()) {
@@ -535,7 +531,6 @@ function openEditor(){
     alert('خطأ: نافذة التعديل غير موجودة');
     return;
   }
-
   minp.innerHTML = MN.map((m,i)=>`
     <div class="mf">
       <label>${m} — منقولة</label>
@@ -546,7 +541,6 @@ function openEditor(){
       <input type="number" id="inN${i}" value="${D_N[i] || 0}" min="0">
     </div>
   `).join('');
-
   document.getElementById('emod').classList.add('open');
   /* ======================= ADMIN AUTH ======================= */
 const ADMIN_PASSWORD = "KSUMC2026";
