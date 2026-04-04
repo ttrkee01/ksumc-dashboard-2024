@@ -139,7 +139,7 @@ tr:hover td{background:var(--kb-lt)}
         <div class="lt3">King Saud University Medical City — KSUMC</div>
       </div>
     </div>
-    <div class="hdr-yr"><div class="y">2024</div><div class="ys">التقرير السنوي</div></div>
+    <div class="hdr-yr"><div class="y">2026</div><div class="ys">التقرير السنوي</div></div>
     <div class="hdr-acts">
       <button class="abtn" onclick="openShare()">🔗 مشاركة</button>
       <button class="abtn" onclick="openEditor()">✏️ تعديل البيانات</button>
@@ -474,10 +474,10 @@ function openShare(){document.getElementById('surl').value=location.href;documen
 function closeShare(){document.getElementById('smod').classList.remove('open');}
 function cpyURL(){try{navigator.clipboard.writeText(location.href);}catch(e){}document.getElementById('surl').select();document.execCommand('copy');toast('✅ تم نسخ الرابط!');}
 function wa(){window.open('https://wa.me/?text='+encodeURIComponent('لوحة الأداء الطبي — المدينة الطبية الجامعية KSUMC 2026\n'+location.href));}
-function em(){window.open('mailto:?subject=لوحة الأداء KSUMC 2024&body='+encodeURIComponent(location.href));}
+function em(){window.open('mailto:?subject=لوحة الأداء KSUMC 2026&body='+encodeURIComponent(location.href));}
 function exportCSV(){
   const rows=[['الشهر','الربع','حالات حرجة','نقل طبي','ميدفاك','تدريب','مشاركات'],...D.map((v,i)=>[MN[i],QN[Math.floor(i/3)],v,v,v,v,v*2])];
-  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(rows.map(r=>r.join(',')).join('\n'));a.download='KSUMC_2024.csv';a.click();
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(rows.map(r=>r.join(',')).join('\n'));a.download='KSUMC_2026.csv';a.click();
 }
 function copyTbl(){try{navigator.clipboard.writeText(D.map((v,i)=>[MN[i],QN[Math.floor(i/3)],v,v,v,v,v*2].join('\t')).join('\n'));}catch(e){}toast('✅ تم النسخ — الصق مباشرة في Excel أو Google Sheets');}
 function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');}
