@@ -551,4 +551,52 @@ function openEditor(){
   `).join('');
 
   document.getElementById('emod').classList.add('open');
+  /* ======================= ADMIN AUTH ======================= */
+const ADMIN_PASSWORD = "KSUMC2026";
+
+function isAdmin(){
+  return sessionStorage.getItem("admin") === "true";
+}
+
+function adminLogin(){
+  const p = prompt("أدخل كلمة مرور الأدمن:");
+  if(p === ADMIN_PASSWORD){
+    sessionStorage.setItem("admin","true");
+    alert("✅ تم الدخول كأدمن");
+    location.reload();
+  } else {
+    alert("❌ كلمة المرور غير صحيحة");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (isAdmin()) {
+    const btn = document.getElementById("editBtn");
+    if (btn) btn.style.display = "inline-flex";
+  }
+});
+
+/* ======================= EDITOR ======================= */
+function openEditor(){
+  const minp = document.getElementById('minp');
+  if(!minp){
+    alert('خطأ: نافذة التعديل غير موجودة');
+    return;
+  }
+
+  minp.innerHTML = MN.map((m,i)=>`
+    <div class="mf">
+      <label>${m}</label>
+      <input type="number" id="in${i}" value="${D[i]}" min="0">
+    </div>
+  `).join('');
+
+  document.getElementById('emod').classList.add('open');
+}
+
+function applyData(){
+  D = D.map((_,i)=> Number(document.getElementById('in'+i).value) || 0);
+  document.getElementById('emod').classList.remove('open');
+  renderAll();
+  toast('✅ تم تحديث اللوحة');
 }
