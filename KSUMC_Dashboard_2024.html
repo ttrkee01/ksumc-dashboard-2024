@@ -142,7 +142,7 @@ tr:hover td{background:var(--kb-lt)}
     <div class="hdr-yr"><div class="y">2026</div><div class="ys">التقرير السنوي</div></div>
     <div class="hdr-acts">
       <button class="abtn" onclick="openShare()">🔗 مشاركة</button>
-      <button class="abtn" onclick="openEditor()">✏️ تعديل البيانات</button>
+      <button class="abtn" onclick="adminLogin()">🔐 دخول الأدمن</button> <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none"> ✏️ تعديل البيانات </button>button>
       <button class="abtn" onclick="exportCSV()">📥 CSV</button>
       <button class="abtn" onclick="window.print()">🖨️ طباعة</button>
     </div>
@@ -484,6 +484,27 @@ function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classL
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
 
 window.addEventListener('DOMContentLoaded',()=>renderAll());
+</script> <script>
+/* ====== ADMIN AUTH ====== */
+const ADMIN_PASSWORD = "KSUMC2026";
+
+function isAdmin(){
+  return sessionStorage.getItem("admin") === "true";
+}
+
+function adminLogin(){
+  const p = prompt("أدخل كلمة مرور الأدمن:");
+  if(p === ADMIN_PASSWORD){
+    sessionStorage.setItem("admin", "true");
+    alert("✅ تم الدخول كأدمن");
+    location.reload();
+  } else {
+    alert("❌ كلمة المرور غير صحيحة");
+  }
+}
+
+/* ====== باقي كود الداشبورد ====== */
+// باقي الكود الموجود عندك هنا
 </script>
 </body>
 </html>
