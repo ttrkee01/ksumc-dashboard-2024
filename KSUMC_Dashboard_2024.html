@@ -498,3 +498,30 @@ window.addEventListener('DOMContentLoaded',()=>renderAll());
 <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">
 ✏️ تعديل البيانات
 </button>
+  <script> /* ======================= ADMIN AUTH ======================= */
+const ADMIN_PASSWORD = "KSUMC2026"; // يمكنك تغييرها
+
+function isAdmin(){
+  return sessionStorage.getItem("admin") === "true";
+}
+
+function adminLogin(){
+  const p = prompt("أدخل كلمة مرور الأدمن:");
+  if(p === ADMIN_PASSWORD){
+    sessionStorage.setItem("admin","true");
+    alert("✅ تم الدخول كأدمن");
+    location.reload();
+  } else {
+    alert("❌ كلمة المرور غير صحيحة");
+  }
+}
+
+/* ✅ إظهار زر التعديل للأدمن فقط */
+document.addEventListener("DOMContentLoaded", () => {
+  if (isAdmin()) {
+    const btn = document.getElementById("editBtn");
+    if (btn) btn.style.display = "inline-flex";
+  }
+});
+``
+</script>
