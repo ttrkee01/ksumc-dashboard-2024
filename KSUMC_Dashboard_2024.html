@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl"> 
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -221,69 +221,28 @@ tr:hover td{background:var(--kb-lt)}
         طباعة
       </button>
     </div>
- <div class="stripe"></div>
-
-<header class="header">
-  <div class="hdr-top">
-    <div class="hdr-logo">
-      <div class="shield">
-        <!-- SVG يبقى كما هو -->
-      </div>
-      <div>
-        <div class="lt1" data-i18n="hospital_name"></div>
-        <div class="lt2" data-i18n="hospital_sub"></div>
-        <div class="lt3">King Saud University Medical City — KSUMC</div>
-      </div>
-    </div>
-
-    <div class="hdr-yr">
-      <div class="y">2026</div>
-      <div class="ys" data-i18n="report_year"></div>
-    </div>
-
-    <div class="hdr-acts">
-
-      <!-- ✅ زر اختيار اللغة -->
-      <select id="langSelect" class="abtn" onchange="setLang(this.value)">
-        <option value="ar">🇸🇦 العربية</option>
-        <option value="en">🇬🇧 English</option>
-      </select>
-
-      <button class="abtn" id="loginBtn" onclick="adminLogin()" data-i18n="admin_login"></button>
-
-      <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none" data-i18n="edit_data"></button>
-
-      <button class="abtn" onclick="openShare()" data-i18n="share"></button>
-
-      <button class="abtn" onclick="exportCSV()">CSV</button>
-
-      <button class="abtn" onclick="window.print()" data-i18n="print"></button>
-    </div>
   </div>
-
   <nav class="nav">
-    <button class="nb active" onclick="showPage('ov',this)" data-i18n="overview"></button>
-
-    <!-- ✅ الأشهر مترجمة -->
-    <button class="nb" onclick="showPage('m0',this)" data-i18n="m_jan"></button>
-    <button class="nb" onclick="showPage('m1',this)" data-i18n="m_feb"></button>
-    <button class="nb" onclick="showPage('m2',this)" data-i18n="m_mar"></button>
-    <button class="nb" onclick="showPage('m3',this)" data-i18n="m_apr"></button>
-    <button class="nb" onclick="showPage('m4',this)" data-i18n="m_may"></button>
-    <button class="nb" onclick="showPage('m5',this)" data-i18n="m_jun"></button>
-    <button class="nb" onclick="showPage('m6',this)" data-i18n="m_jul"></button>
-    <button class="nb" onclick="showPage('m7',this)" data-i18n="m_aug"></button>
-    <button class="nb" onclick="showPage('m8',this)" data-i18n="m_sep"></button>
-    <button class="nb" onclick="showPage('m9',this)" data-i18n="m_oct"></button>
-    <button class="nb" onclick="showPage('m10',this)" data-i18n="m_nov"></button>
-    <button class="nb" onclick="showPage('m11',this)" data-i18n="m_dec"></button>
-
-    <button class="nb" onclick="showPage('cmp',this)" data-i18n="compare"></button>
-    <button class="nb" onclick="showPage('dtl',this)" data-i18n="full_data"></button>
+    <button class="nb active" onclick="showPage('ov',this)">نظرة عامة</button>
+    <button class="nb" onclick="showPage('m0',this)">يناير</button>
+    <button class="nb" onclick="showPage('m1',this)">فبراير</button>
+    <button class="nb" onclick="showPage('m2',this)">مارس</button>
+    <button class="nb" onclick="showPage('m3',this)">ابريل</button>
+    <button class="nb" onclick="showPage('m4',this)">مايو</button>
+    <button class="nb" onclick="showPage('m5',this)">يونيو</button>
+    <button class="nb" onclick="showPage('m6',this)">يوليو</button>
+    <button class="nb" onclick="showPage('m7',this)">اغسطس</button>
+    <button class="nb" onclick="showPage('m8',this)">سبتمبر</button>
+    <button class="nb" onclick="showPage('m9',this)">اكتوبر</button>
+    <button class="nb" onclick="showPage('m10',this)">نوفمبر</button>
+    <button class="nb" onclick="showPage('m11',this)">ديسمبر</button>
+    <button class="nb" onclick="showPage('cmp',this)">التحليل المقارن</button>
+    <button class="nb" onclick="showPage('dtl',this)">البيانات الكاملة</button>
   </nav>
 </header>
 
 <div class="main">
+
 <!-- ==================== OVERVIEW ==================== -->
 <div id="ov" class="page active">
   <div class="ebanner">
@@ -1222,6 +1181,164 @@ window.addEventListener('DOMContentLoaded',()=>{
 </script>
 </body>
 </html>
+
+<script>
+/* ======================= FULL TRANSLATIONS ======================= */
+const translations = {
+  ar: {
+    // Header
+    hospital_name: "المدينة الطبية الجامعية",
+    hospital_sub: "جامعة الملك سعود · الرياض",
+    dashboard_title: "لوحة الأداء التشغيلي",
+    report_year: "التقرير السنوي",
+    share: "مشاركة",
+    admin_login: "دخول الأدمن",
+    edit_data: "تعديل البيانات",
+    export_csv: "تصدير CSV",
+    print: "طباعة",
+
+    // Navigation
+    overview: "نظرة عامة",
+    q1: "الربع الأول",
+    q2: "الربع الثاني",
+    q3: "الربع الثالث",
+    q4: "الربع الرابع",
+    compare: "التحليل المقارن",
+    full_data: "البيانات الكاملة",
+
+    // KPIs
+    kpi_total_cases: "إجمالي الحالات الحرجة",
+    kpi_transport: "إجمالي النقل الطبي",
+    kpi_training: "البرامج التدريبية",
+    kpi_participation: "إجمالي المشاركات",
+    months_12: "12 شهرًا",
+    internal_external: "داخلي + خارجي",
+
+    // Charts & Sections
+    monthly_performance: "الأداء الشهري — الحالات الحرجة",
+    quarter_distribution: "توزيع الأرباع",
+    annual_trend: "منحنى الاتجاه السنوي",
+    half_compare: "مقارنة النصفين",
+    annual_summary: "الملخص السنوي الشامل",
+
+    // Table headers
+    th_period: "الفترة",
+    th_cases: "حالات حرجة",
+    th_transport: "نقل طبي",
+    th_medivac: "ميدفاك",
+    th_training: "تدريب",
+    th_participation: "مشاركات",
+    th_percent: "% سنوي",
+
+    // Detail table
+    th_month: "الشهر",
+    th_quarter: "الربع",
+    th_internal: "نقل داخلي",
+    th_external: "نقل خارجي",
+
+    // Modals
+    edit_modal_title: "تعديل البيانات الشهرية",
+    edit_modal_desc: "عدّل الأرقام وستتحدث الرسوم والمؤشرات تلقائيًا",
+    apply: "تطبيق",
+    cancel: "إلغاء",
+
+    // Messages
+    updated_ok: "تم تحديث اللوحة بنجاح",
+    auth_wrong: "كلمة المرور غير صحيحة",
+    auth_ok: "تم الدخول كأدمن"
+  },
+
+  en: {
+    // Header
+    hospital_name: "University Medical City",
+    hospital_sub: "King Saud University · Riyadh",
+    dashboard_title: "Operational Performance Dashboard",
+    report_year: "Annual Report",
+    share: "Share",
+    admin_login: "Admin Login",
+    edit_data: "Edit Data",
+    export_csv: "Export CSV",
+    print: "Print",
+
+    // Navigation
+    overview: "Overview",
+    q1: "Q1",
+    q2: "Q2",
+    q3: "Q3",
+    q4: "Q4",
+    compare: "Comparative Analysis",
+    full_data: "Full Data",
+
+    // KPIs
+    kpi_total_cases: "Total Critical Cases",
+    kpi_transport: "Total Medical Transport",
+    kpi_training: "Training Programs",
+    kpi_participation: "Total Participation",
+    months_12: "12 Months",
+    internal_external: "Internal + External",
+
+    // Charts & Sections
+    monthly_performance: "Monthly Performance — Critical Cases",
+    quarter_distribution: "Quarter Distribution",
+    annual_trend: "Annual Trend",
+    half_compare: "H1 vs H2 Comparison",
+    annual_summary: "Annual Summary",
+
+    // Table headers
+    th_period: "Period",
+    th_cases: "Critical Cases",
+    th_transport: "Medical Transport",
+    th_medivac: "Medivac",
+    th_training: "Training",
+    th_participation: "Participation",
+    th_percent: "% Annual",
+
+    // Detail table
+    th_month: "Month",
+    th_quarter: "Quarter",
+    th_internal: "Internal Transport",
+    th_external: "External Transport",
+
+    // Modals
+    edit_modal_title: "Edit Monthly Data",
+    edit_modal_desc: "Adjust values to update all charts instantly",
+    apply: "Apply",
+    cancel: "Cancel",
+
+    // Messages
+    updated_ok: "Dashboard updated successfully",
+    auth_wrong: "Incorrect password",
+    auth_ok: "Logged in as admin"
+  }
+};
+
+/* ======================= LANGUAGE ENGINE ======================= */
+let currentLang = localStorage.getItem("lang") || "ar";
+
+function applyLang(lang){
+  currentLang = lang;
+  localStorage.setItem("lang", lang);
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir  = (lang === "ar") ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
+  });
+
+  const sel = document.getElementById("langSelect");
+  if (sel) sel.value = lang;
+}
+
+function setLang(lang){ applyLang(lang); }
+
+document.addEventListener("DOMContentLoaded", () => {
+  applyLang(currentLang);
+});
+</script>
 <script>
 /* ======================= FULL TRANSLATIONS ======================= */
 const translations = {
@@ -1348,7 +1465,7 @@ function applyLang(lang){
 
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
-    if (translations[lang] && translations[lang][key]) {
+    if (translations[lang][key]) {
       el.textContent = translations[lang][key];
     }
   });
@@ -1362,6 +1479,3 @@ function setLang(lang){
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  applyLang(currentLang);
-});
-</script>
