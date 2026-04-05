@@ -1,554 +1,153 @@
-قم بالاضافة هنا <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KSUMC — لوحة الأداء التشغيلي 2026</title>
+
+<!-- Chart.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
+<!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
+/* ======================= STYLE ======================= */
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --kb:#0084BD;--kb-dk:#005f8a;--kb-lt:#e6f4fb;--kb-mid:#3BAAD4;
-  --kc:#E3E0D2;--kg:#748995;--kg-lt:#f0f2f3;
-  --text:#1a1a1a;--text2:#4a5568;--text3:#748995;
-  --bg:#f4f5f7;--card:#fff;--border:#dde3e8;
-  --r:10px;--sh:0 1px 6px rgba(0,132,189,.08);
-}
-body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;min-height:100vh}
-.stripe{height:4px;background:linear-gradient(90deg,#005f8a,#0084BD,#3BAAD4,#E3E0D2)}
-.header{background:linear-gradient(135deg,#005f8a 0%,#0084BD 65%,#3BAAD4 100%);color:#fff;padding:0 28px;position:sticky;top:0;z-index:200;box-shadow:0 3px 16px rgba(0,100,160,.22)}
-.hdr-top{display:flex;align-items:center;justify-content:space-between;padding:13px 0 9px;flex-wrap:wrap;gap:10px}
-.hdr-logo{display:flex;align-items:center;gap:12px}
-.shield{width:50px;height:60px;background:rgba(255,255,255,.15);border-radius:4px 4px 25px 25px;display:flex;align-items:center;justify-content:center;border:1.5px solid rgba(255,255,255,.3);flex-shrink:0}
-.lt1{font-size:16px;font-weight:800;color:#fff}
-.lt2{font-size:10px;color:rgba(255,255,255,.75);font-weight:500}
-.lt3{font-size:9px;color:rgba(255,255,255,.6)}
-.hdr-yr{text-align:center}
-.hdr-yr .y{font-size:26px;font-weight:800;color:#fff;line-height:1}
-.hdr-yr .ys{font-size:10px;color:rgba(255,255,255,.7);margin-top:2px}
-.hdr-acts{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
-.abtn{background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.3);color:#fff;padding:7px 14px;border-radius:20px;font-family:'Cairo',sans-serif;font-size:11.5px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:4px}
-.abtn:hover{background:rgba(255,255,255,.28)}
-.nav{display:flex;gap:2px;padding-bottom:0;overflow-x:auto}
-.nb{padding:9px 16px;font-family:'Cairo',sans-serif;font-size:12px;font-weight:600;color:rgba(255,255,255,.65);background:transparent;border:none;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;transition:all .18s}
-.nb.active,.nb:hover{color:#fff;border-bottom-color:#fff}
-.main{max-width:1280px;margin:0 auto;padding:20px 18px}
-.page{display:none}.page.active{display:block}
-.ebanner{background:#fff;border:1.5px dashed var(--kb);border-radius:var(--r);padding:11px 16px;margin-bottom:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.ebanner .ei{font-size:13px;color:var(--kb);font-weight:700}
-.ebanner .es{font-size:12px;color:var(--text2)}
+body{font-family:'Cairo',sans-serif;background:#f4f5f7;color:#1a1a1a;direction:rtl}
+.header{background:#0084BD;color:#fff;padding:14px 22px;display:flex;justify-content:space-between;align-items:center}
+.abtn{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 14px;border-radius:18px;font-weight:600;cursor:pointer}
+.main{padding:22px;max-width:1200px;margin:auto}
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
-@media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.kpi-grid{grid-template-columns:1fr}}
-.kpi{background:var(--card);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh);border-top:4px solid var(--c,var(--kb));transition:transform .15s}
-.kpi:hover{transform:translateY(-2px)}
-.kpi-ico{font-size:20px;margin-bottom:7px}
-.kpi-lbl{font-size:11px;color:var(--text2);margin-bottom:5px;font-weight:600}
-.kpi-val{font-size:32px;font-weight:800;color:var(--c,var(--kb));line-height:1}
-.kpi-sub{font-size:11px;color:var(--text3);margin-top:4px}
-.kpi-tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:10px;font-weight:700;background:var(--kb-lt);color:var(--kb)}
-.card{background:var(--card);border-radius:var(--r);padding:18px;box-shadow:var(--sh);border:1px solid var(--border)}
-.ch{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
-.ct{font-size:13.5px;font-weight:700;color:var(--text)}
-.cs{font-size:11px;color:var(--text3);margin-top:2px}
-.g2{display:grid;grid-template-columns:3fr 2fr;gap:12px;margin-bottom:12px}
-.g2b{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
-@media(max-width:820px){.g2,.g2b,.g3{grid-template-columns:1fr}}
-.cw{position:relative}
-.sec{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:9px;border-bottom:2px solid var(--kb-lt)}
-.sec::before{content:'';width:4px;height:20px;background:var(--kb);border-radius:2px;flex-shrink:0}
-.sec span{font-size:14px;font-weight:700;color:var(--kb)}
-.qhero{border-radius:var(--r);padding:20px 22px;margin-bottom:16px;color:#fff}
-.qht{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:10px}
-.qht-title{font-size:18px;font-weight:800}
-.qht-sub{font-size:11.5px;opacity:.8;margin-top:2px}
-.qtot{background:rgba(255,255,255,.2);border-radius:9px;padding:9px 18px;text-align:center;border:1.5px solid rgba(255,255,255,.3)}
-.qtot-n{font-size:30px;font-weight:800}
-.qtot-l{font-size:10px;opacity:.8}
-.qmo{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.mc{background:rgba(255,255,255,.15);border-radius:8px;padding:13px;text-align:center;border:1px solid rgba(255,255,255,.2)}
-.mn{font-size:12px;font-weight:700;margin-bottom:5px;opacity:.9}
-.mv{font-size:26px;font-weight:800}
-.qi{background:var(--kb-lt);border-radius:8px;padding:13px 15px;border-right:4px solid var(--kb);margin-bottom:13px}
-.qi p{font-size:12.5px;line-height:1.75;color:var(--text)}
-.pr-row{display:flex;align-items:center;gap:9px;margin-bottom:9px}
-.pr-lbl{font-size:11.5px;color:var(--text2);min-width:76px;text-align:right;font-weight:600}
-.pr-tr{flex:1;background:var(--kg-lt);border-radius:4px;height:8px;overflow:hidden}
-.pr-fi{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
-.pr-val{font-size:11.5px;font-weight:700;min-width:34px;color:var(--kb)}
-.tw{overflow-x:auto;border-radius:8px;border:1px solid var(--border)}
-table{width:100%;border-collapse:collapse;font-size:12px}
-th{background:var(--kb);color:#fff;padding:9px 12px;text-align:center;font-weight:700;font-family:'Cairo',sans-serif;font-size:11.5px}
-td{padding:8px 12px;text-align:center;border-bottom:1px solid var(--border);font-family:'Cairo',sans-serif}
-tr:last-child td{border-bottom:none}
-tr:nth-child(even) td{background:var(--kg-lt)}
-tr:hover td{background:var(--kb-lt)}
-.pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700}
-.leg{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:9px;font-size:11px;color:var(--text2)}
-.leg span{display:flex;align-items:center;gap:4px}
-.lsq{width:10px;height:10px;border-radius:2px;flex-shrink:0}
-.btnprim{background:var(--kb);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-right:auto}
-.btnprim:hover{background:var(--kb-dk)}
-.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;align-items:center;justify-content:center}
+.kpi{background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.kpi-lbl{font-size:12px;color:#4a5568}
+.kpi-val{font-size:32px;font-weight:800;color:#0084BD}
+.card{background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 6px rgba(0,0,0,.08);margin-bottom:14px}
+.ct{font-weight:700;margin-bottom:10px}
+
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);align-items:center;justify-content:center}
 .modal-ov.open{display:flex}
-.modal{background:#fff;border-radius:13px;padding:26px;width:min(720px,95vw);max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
-.mt{font-size:16px;font-weight:800;color:var(--kb);margin-bottom:5px}
-.ms{font-size:11.5px;color:var(--text3);margin-bottom:18px}
-.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:18px}
-@media(max-width:600px){.mgrid{grid-template-columns:repeat(2,1fr)}}
-.mf{display:flex;flex-direction:column;gap:4px}
-.mf label{font-size:11px;font-weight:600;color:var(--text2)}
-.mf input{border:1.5px solid var(--border);border-radius:6px;padding:7px 9px;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;color:var(--kb);text-align:center;transition:border .15s}
-.mf input:focus{outline:none;border-color:var(--kb)}
-.macts{display:flex;gap:9px;justify-content:flex-end}
-.btnapply{background:var(--kb);color:#fff;border:none;padding:9px 22px;border-radius:8px;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;cursor:pointer}
-.btncanc{background:#fff;color:var(--text2);border:1.5px solid var(--border);padding:9px 18px;border-radius:8px;font-family:'Cairo',sans-serif;font-size:13px;cursor:pointer}
-.smodal{background:#fff;border-radius:13px;padding:26px;width:min(480px,95vw);box-shadow:0 20px 60px rgba(0,0,0,.2)}
-.surl{display:flex;gap:7px;margin:14px 0}
-.surl input{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:9px 11px;font-family:monospace;font-size:11.5px;color:var(--text2);background:var(--kg-lt)}
-.scpy{background:var(--kb);color:#fff;border:none;padding:9px 16px;border-radius:8px;font-family:'Cairo',sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap}
-.smeth{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:13px}
-.sbtn{padding:9px;border-radius:8px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-family:'Cairo',sans-serif;font-size:11.5px;font-weight:600;color:var(--text2);display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .15s}
-.sbtn:hover{border-color:var(--kb);color:var(--kb);background:var(--kb-lt)}
-.sico{font-size:20px}
-.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:var(--kb);color:#fff;padding:9px 20px;border-radius:20px;font-family:'Cairo',sans-serif;font-size:12.5px;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none;z-index:2000}
+.modal{background:#fff;border-radius:12px;padding:22px;width:min(700px,95vw)}
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.mf label{font-size:11px;color:#444}
+.mf input{padding:6px;border:1px solid #ccc;border-radius:6px;text-align:center}
+
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+background:#0084BD;color:#fff;padding:8px 20px;border-radius:20px;
+opacity:0;transition:.3s}
 .toast.show{opacity:1}
-.footer{background:var(--kb);color:rgba(255,255,255,.72);text-align:center;padding:13px;font-size:11px;font-family:'Cairo',sans-serif;direction:rtl}
-@media print{.header .hdr-acts,.ebanner,.nb,.abtn{display:none!important}.header{position:relative}.page{display:block!important}}
 </style>
 </head>
+
 <body>
-<div class="stripe"></div>
 
 <header class="header">
-  <div class="hdr-top">
-    <div class="hdr-logo">
-      <div class="shield">
-        <svg viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5 5 L35 5 Q38 5 38 8 L38 30 Q38 44 20 48 Q2 44 2 30 L2 8 Q2 5 5 5 Z" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
-          <text x="20" y="20" text-anchor="middle" font-family="Arial" font-size="10.5" font-weight="bold" fill="white">KSU</text>
-          <text x="20" y="31" text-anchor="middle" font-family="Arial" font-size="5.5" fill="rgba(255,255,255,0.85)">MEDICAL</text>
-          <text x="20" y="40" text-anchor="middle" font-family="Arial" font-size="5" fill="rgba(255,255,255,0.72)">CITY</text>
-        </svg>
-      </div>
-      <div>
-        <div class="lt1">المدينة الطبية الجامعية</div>
-        <div class="lt2">جامعة الملك سعود · Riyadh, KSA</div>
-        <div class="lt3">King Saud University Medical City — KSUMC</div>
-      </div>
-    </div>
-    <div class="hdr-yr"><div class="y">2026</div><div class="ys">التقرير السنوي</div></div>
-   <!-- زر دخول الأدمن --> <button class="abtn" onclick="adminLogin()">🔐 دخول الأدمن</button>  <!-- زر تعديل البيانات (يظهر فقط للأدمن) --> <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">   ✏️ تعديل البيانات </button>
-  <button class="abtn" onclick="openShare()">🔗 مشاركة</button>
-
-  <!-- زر دخول الأدمن -->
-  <button class="abtn" onclick="adminLogin()">🔐 دخول الأدمن</button>
-
-  <!-- زر تعديل البيانات (يظهر فقط للأدمن) -->
-  <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">
-    ✏️ تعديل البيانات
-  </button>
-
-  <button class="abtn" onclick="exportCSV()">📥 CSV</button>
-  <button class="abtn" onclick="window.print()">🖨️ طباعة</button>
-</div>
-    </div>
+  <div>🏥 المدينة الطبية الجامعية — جامعة الملك سعود</div>
+  <div>
+    <button class="abtn" onclick="adminLogin()">🔐 دخول الأدمن</button>
+    <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">✏️ تعديل البيانات</button>
+    <button class="abtn" onclick="exportCSV()">📥 CSV</button>
+    <button class="abtn" onclick="window.print()">🖨️ طباعة</button>
   </div>
-  <nav class="nav">
-    <button class="nb active" onclick="showPage('ov',this)">📊 نظرة عامة</button>
-    <button class="nb" onclick="showPage('q1',this)">الربع الأول</button>
-    <button class="nb" onclick="showPage('q2',this)">الربع الثاني</button>
-    <button class="nb" onclick="showPage('q3',this)">الربع الثالث</button>
-    <button class="nb" onclick="showPage('q4',this)">الربع الرابع</button>
-    <button class="nb" onclick="showPage('cmp',this)">📈 التحليل المقارن</button>
-    <button class="nb" onclick="showPage('dtl',this)">🗂️ البيانات الكاملة</button>
-  </nav>
 </header>
 
 <div class="main">
 
-<!-- OVERVIEW -->
-<div id="ov" class="page active">
-  <div class="ebanner">
-    <span class="es">عدّل أرقام الحالات وستتحدث جميع الرسوم والمؤشرات فوراً — والرابط يحتفظ بالبيانات للمشاركة</span>
-  </div>
   <div class="kpi-grid">
-    <div class="kpi" style="--c:#0084BD"><div class="kpi-ico">🏥</div><div class="kpi-lbl">إجمالي الحالات الحرجة</div><div class="kpi-val" id="kv1">795</div><div class="kpi-sub"><span class="kpi-tag">منقولة</span> 12 شهراً</div></div>
-    <div class="kpi" style="--c:#005f8a"><div class="kpi-ico">🚑</div><div class="kpi-lbl">إجمالي النقل الطبي</div><div class="kpi-val" id="kv2">795</div><div class="kpi-sub"><span class="kpi-tag">داخلي + خارجي</span></div></div>
-    <div class="kpi" style="--c:#3BAAD4"><div class="kpi-ico">🎓</div><div class="kpi-lbl">البرامج التدريبية</div><div class="kpi-val" id="kv3">795</div><div class="kpi-sub"><span class="kpi-tag">طلاب + أطباء</span></div></div>
-    <div class="kpi" style="--c:#748995"><div class="kpi-ico">👥</div><div class="kpi-lbl">إجمالي المشاركات</div><div class="kpi-val" id="kv4">1,590</div><div class="kpi-sub"><span class="kpi-tag">خارجية + داخلية</span></div></div>
+    <div class="kpi"><div class="kpi-lbl">إجمالي الحالات الحرجة</div><div id="kv1" class="kpi-val">0</div></div>
+    <div class="kpi"><div class="kpi-lbl">النقل الطبي</div><div id="kv2" class="kpi-val">0</div></div>
+    <div class="kpi"><div class="kpi-lbl">البرامج التدريبية</div><div id="kv3" class="kpi-val">0</div></div>
+    <div class="kpi"><div class="kpi-lbl">المشاركات</div><div id="kv4" class="kpi-val">0</div></div>
   </div>
-  <div class="g2">
-    <div class="card"><div class="ch"><div><div class="ct">الأداء الشهري — الحالات الحرجة المنقولة</div><div class="cs">مع تمييز الأرباع بألوان الهوية البصرية لـ KSUMC</div></div></div>
-      <div class="leg"><span><span class="lsq" style="background:#0084BD"></span>ق١</span><span><span class="lsq" style="background:#005f8a"></span>ق٢</span><span><span class="lsq" style="background:#3BAAD4"></span>ق٣</span><span><span class="lsq" style="background:#748995"></span>ق٤</span></div>
-      <div class="cw" style="height:240px"><canvas id="c1"></canvas></div></div>
-    <div class="card"><div class="ch"><div><div class="ct">توزيع الأرباع</div><div class="cs">النسبة من الإجمالي السنوي</div></div></div>
-      <div class="cw" style="height:240px"><canvas id="c2"></canvas></div></div>
-  </div>
-  <div class="g2b">
-    <div class="card"><div class="ch"><div><div class="ct">منحنى الاتجاه السنوي</div><div class="cs">الخط المتقطع = المتوسط المتحرك 3 أشهر</div></div></div>
-      <div class="cw" style="height:195px"><canvas id="c3"></canvas></div></div>
-    <div class="card"><div class="ch"><div><div class="ct">مقارنة النصفين H1 / H2</div></div></div>
-      <div class="cw" style="height:195px"><canvas id="c4"></canvas></div></div>
-  </div>
-  <div class="card"><div class="ch"><div><div class="ct">الملخص السنوي الشامل</div></div></div>
-    <div class="tw"><table><thead><tr><th>الفترة</th><th>حالات حرجة</th><th>نقل طبي</th><th>ميدفاك</th><th>تدريب</th><th>مشاركات</th><th>% سنوي</th></tr></thead><tbody id="stb"></tbody></table></div></div>
-</div>
 
-<!-- Q1 -->
-<div id="q1" class="page">
-  <div class="qhero" style="background:linear-gradient(135deg,#005f8a,#0084BD)">
-    <div class="qht"><div><div class="qht-title">الربع الأول — يناير · فبراير · مارس</div><div class="qht-sub">ربع الانطلاق والنمو المتصاعد</div></div>
-      <div class="qtot"><div class="qtot-n" id="qt1">193</div><div class="qtot-l">إجمالي الحالات</div></div></div>
-    <div class="qmo">
-      <div class="mc"><div class="mn">يناير</div><div class="mv" id="md0">50</div></div>
-      <div class="mc"><div class="mn">فبراير</div><div class="mv" id="md1">66</div></div>
-      <div class="mc"><div class="mn">مارس</div><div class="mv" id="md2">77</div></div>
-    </div>
-  </div>
-  <div class="qi"><p>أطلق الربع الأول شرارة نشاط مؤسسي واعد في المدينة الطبية الجامعية؛ بدأ يناير بـ 50 حالة أرست قاعدة تشغيلية متوازنة. ثم ارتفعت الحالات في فبراير مؤشراً على نمو تدريجي مطّرد، قبل أن يتوّج مارس الربع بقفزة نوعية لترسم المنحنى الصاعد ملامح ربع متميز يعكس توسّعاً مستداماً في نطاق خدمات المستشفيات الجامعية.</p></div>
-  <div class="g2b">
-    <div class="card"><div class="ct" style="margin-bottom:11px">المنحنى الشهري — ق١</div><div class="cw" style="height:195px"><canvas id="cq1a"></canvas></div></div>
-    <div class="card"><div class="ct" style="margin-bottom:11px">التوزيع النسبي بين الأشهر</div><div class="cw" style="height:195px"><canvas id="cq1b"></canvas></div></div>
-  </div>
-  <div class="card"><div class="ct" style="margin-bottom:13px">حصة كل شهر من إجمالي الربع</div>
-    <div class="pr-row"><div class="pr-lbl">يناير</div><div class="pr-tr"><div class="pr-fi" id="pf0" style="background:#0084BD"></div></div><div class="pr-val" id="pv0"></div></div>
-    <div class="pr-row"><div class="pr-lbl">فبراير</div><div class="pr-tr"><div class="pr-fi" id="pf1" style="background:#3BAAD4"></div></div><div class="pr-val" id="pv1"></div></div>
-    <div class="pr-row"><div class="pr-lbl">مارس</div><div class="pr-tr"><div class="pr-fi" id="pf2" style="background:#005f8a"></div></div><div class="pr-val" id="pv2"></div></div>
-  </div>
-</div>
-
-<!-- Q2 -->
-<div id="q2" class="page">
-  <div class="qhero" style="background:linear-gradient(135deg,#006A9E,#3BAAD4)">
-    <div class="qht"><div><div class="qht-title">الربع الثاني — أبريل · مايو · يونيو</div><div class="qht-sub">ربع التذبذب والتحديات الموسمية</div></div>
-      <div class="qtot"><div class="qtot-n" id="qt2">200</div><div class="qtot-l">إجمالي الحالات</div></div></div>
-    <div class="qmo">
-      <div class="mc"><div class="mn">أبريل</div><div class="mv" id="md3">90</div></div>
-      <div class="mc"><div class="mn">مايو</div><div class="mv" id="md4">70</div></div>
-      <div class="mc"><div class="mn">يونيو</div><div class="mv" id="md5">40</div></div>
-    </div>
-  </div>
-  <div class="qi"><p>سجّل أبريل أعلى رقم شهري للنصف الأول بـ 90 حالة. ثم جاء مايو بتراجع معتدل يعكس إعادة توزيع الطاقات، قبل أن يُسجّل يونيو أدنى رقم في النصف الأول. ورغم التذبذب، حقّق الربع 200 حالة متجاوزاً الربع الأول بسبع حالات، مؤكداً متانة البنية التشغيلية لمستشفيات المدينة الطبية الجامعية بجامعة الملك سعود.</p></div>
-  <div class="g2b">
-    <div class="card"><div class="ct" style="margin-bottom:11px">المنحنى الشهري — ق٢</div><div class="cw" style="height:195px"><canvas id="cq2a"></canvas></div></div>
-    <div class="card"><div class="ct" style="margin-bottom:11px">التوزيع النسبي</div><div class="cw" style="height:195px"><canvas id="cq2b"></canvas></div></div>
-  </div>
-  <div class="card"><div class="ct" style="margin-bottom:13px">حصة كل شهر من إجمالي الربع</div>
-    <div class="pr-row"><div class="pr-lbl">أبريل</div><div class="pr-tr"><div class="pr-fi" id="pf3" style="background:#0084BD"></div></div><div class="pr-val" id="pv3"></div></div>
-    <div class="pr-row"><div class="pr-lbl">مايو</div><div class="pr-tr"><div class="pr-fi" id="pf4" style="background:#3BAAD4"></div></div><div class="pr-val" id="pv4"></div></div>
-    <div class="pr-row"><div class="pr-lbl">يونيو</div><div class="pr-tr"><div class="pr-fi" id="pf5" style="background:#005f8a"></div></div><div class="pr-val" id="pv5"></div></div>
-  </div>
-</div>
-
-<!-- Q3 -->
-<div id="q3" class="page">
-  <div class="qhero" style="background:linear-gradient(135deg,#3BAAD4,#0084BD)">
-    <div class="qht"><div><div class="qht-title">الربع الثالث — يوليو · أغسطس · سبتمبر</div><div class="qht-sub">ربع الانتعاش والقمة الموسمية الصيفية</div></div>
-      <div class="qtot"><div class="qtot-n" id="qt3">195</div><div class="qtot-l">إجمالي الحالات</div></div></div>
-    <div class="qmo">
-      <div class="mc"><div class="mn">يوليو</div><div class="mv" id="md6">60</div></div>
-      <div class="mc"><div class="mn">أغسطس</div><div class="mv" id="md7">80</div></div>
-      <div class="mc"><div class="mn">سبتمبر</div><div class="mv" id="md8">55</div></div>
-    </div>
-  </div>
-  <div class="qi"><p>انطلق النصف الثاني بثقة مدروسة؛ قفز أغسطس إلى 80 حالة ليُسجّل ثاني أعلى رقم شهري في النصف الثاني كاشفاً عن قمة موسمية صيفية. ومن اللافت أن مجموع الربع الثالث (195) يتقارب مع الربع الأول (193)، مما يكشف نمطاً فصلياً منتظماً يستدعي تعزيز الكوادر في أغسطس من كل عام.</p></div>
-  <div class="g2b">
-    <div class="card"><div class="ct" style="margin-bottom:11px">المنحنى الشهري — ق٣</div><div class="cw" style="height:195px"><canvas id="cq3a"></canvas></div></div>
-    <div class="card"><div class="ct" style="margin-bottom:11px">التوزيع النسبي</div><div class="cw" style="height:195px"><canvas id="cq3b"></canvas></div></div>
-  </div>
-  <div class="card"><div class="ct" style="margin-bottom:13px">حصة كل شهر من إجمالي الربع</div>
-    <div class="pr-row"><div class="pr-lbl">يوليو</div><div class="pr-tr"><div class="pr-fi" id="pf6" style="background:#3BAAD4"></div></div><div class="pr-val" id="pv6"></div></div>
-    <div class="pr-row"><div class="pr-lbl">أغسطس</div><div class="pr-tr"><div class="pr-fi" id="pf7" style="background:#0084BD"></div></div><div class="pr-val" id="pv7"></div></div>
-    <div class="pr-row"><div class="pr-lbl">سبتمبر</div><div class="pr-tr"><div class="pr-fi" id="pf8" style="background:#005f8a"></div></div><div class="pr-val" id="pv8"></div></div>
-  </div>
-</div>
-
-<!-- Q4 -->
-<div id="q4" class="page">
-  <div class="qhero" style="background:linear-gradient(135deg,#4a5568,#748995)">
-    <div class="qht"><div><div class="qht-title">الربع الرابع — أكتوبر · نوفمبر · ديسمبر</div><div class="qht-sub">★  الربع الأقوى — أعلى أداء سنوي في  2026</div></div>
-      <div class="qtot"><div class="qtot-n" id="qt4">207</div><div class="qtot-l">إجمالي الحالات</div></div></div>
-    <div class="qmo">
-      <div class="mc"><div class="mn">أكتوبر</div><div class="mv" id="md9">50</div></div>
-      <div class="mc"><div class="mn">نوفمبر</div><div class="mv" id="md10">67</div></div>
-      <div class="mc"><div class="mn">ديسمبر</div><div class="mv" id="md11">90</div></div>
-    </div>
-  </div>
-  <div class="qi"><p>كان الربع الرابع ختاماً مُشرّفاً للعام؛ توّج ديسمبر العام بـ 90 حالة مساوياً لذروة أبريل ومتصدّراً المشترك سنوياً. مجموع 207 حالات هو الأعلى ربعياً طوال 2025، ويُبشّر بمنطلق قوي لعام 2026 تأكيداً للريادة الطبية لمستشفيات المدينة الطبية الجامعية بجامعة الملك سعود.</p></div>
-  <div class="g2b">
-    <div class="card"><div class="ct" style="margin-bottom:11px">المنحنى الشهري — ق٤</div><div class="cw" style="height:195px"><canvas id="cq4a"></canvas></div></div>
-    <div class="card"><div class="ct" style="margin-bottom:11px">التوزيع النسبي</div><div class="cw" style="height:195px"><canvas id="cq4b"></canvas></div></div>
-  </div>
-  <div class="card"><div class="ct" style="margin-bottom:13px">حصة كل شهر من إجمالي الربع</div>
-    <div class="pr-row"><div class="pr-lbl">أكتوبر</div><div class="pr-tr"><div class="pr-fi" id="pf9" style="background:#748995"></div></div><div class="pr-val" id="pv9"></div></div>
-    <div class="pr-row"><div class="pr-lbl">نوفمبر</div><div class="pr-tr"><div class="pr-fi" id="pf10" style="background:#4a6070"></div></div><div class="pr-val" id="pv10"></div></div>
-    <div class="pr-row"><div class="pr-lbl">ديسمبر</div><div class="pr-tr"><div class="pr-fi" id="pf11" style="background:#2c3e50"></div></div><div class="pr-val" id="pv11"></div></div>
-  </div>
-</div>
-
-<!-- COMPARE -->
-<div id="cmp" class="page">
-  <div class="sec"><span>التحليل المقارن والاتجاهات</span></div>
-  <div class="g2b">
-    <div class="card"><div class="ct" style="margin-bottom:11px">مقارنة الأرباع — ترتيب تنازلي</div><div class="cw" style="height:220px"><canvas id="cc1"></canvas></div></div>
-    <div class="card"><div class="ct" style="margin-bottom:11px">أعلى وأدنى الأشهر</div><div class="cw" style="height:220px"><canvas id="cc2"></canvas></div></div>
-  </div>
-  <div class="card" style="margin-bottom:12px"><div class="ct" style="margin-bottom:11px">منحنى الأداء السنوي الكامل مع المتوسط المتحرك</div>
-    <div class="cw" style="height:215px"><canvas id="cc3"></canvas></div></div>
-  <div class="card"><div class="ct" style="margin-bottom:13px">ترتيب الأرباع حسب الأداء</div>
-    <div class="pr-row"><div class="pr-lbl">ق٤ ★</div><div class="pr-tr"><div class="pr-fi" id="prq4" style="background:#748995"></div></div><div class="pr-val" id="prv4"></div></div>
-    <div class="pr-row"><div class="pr-lbl">ق٢</div><div class="pr-tr"><div class="pr-fi" id="prq2" style="background:#005f8a"></div></div><div class="pr-val" id="prv2"></div></div>
-    <div class="pr-row"><div class="pr-lbl">ق٣</div><div class="pr-tr"><div class="pr-fi" id="prq3" style="background:#3BAAD4"></div></div><div class="pr-val" id="prv3"></div></div>
-    <div class="pr-row"><div class="pr-lbl">ق١</div><div class="pr-tr"><div class="pr-fi" id="prq1" style="background:#0084BD"></div></div><div class="pr-val" id="prv1"></div></div>
-  </div>
-</div>
-
-<!-- DATA -->
-<div id="dtl" class="page">
-  <div class="sec"><span>البيانات التفصيلية الكاملة</span></div>
-  <div class="card" style="margin-bottom:12px">
-    <div class="ch"><div><div class="ct">جدول الأداء الشهري</div><div class="cs">جميع المؤشرات لكل شهر</div></div>
-    <div class="tw"><table><thead><tr><th>#</th><th>الشهر</th><th>الربع</th><th>حالات حرجة</th><th>نقل داخلي</th><th>نقل خارجي</th><th>ميدفاك</th><th>تدريب</th><th>مشاركات</th></tr></thead><tbody id="dtb"></tbody></table></div>
-  </div>
   <div class="card">
-    <div class="ct" style="margin-bottom:12px">تصدير البيانات للأنظمة الأخرى</div>
-    <div style="display:flex;gap:9px;flex-wrap:wrap">
-      <button class="btnprim" style="margin:0" onclick="exportCSV()">📥 تنزيل CSV — Excel / Google Sheets</button>
-      <button class="btnprim" style="margin:0;background:#005f8a" onclick="copyTbl()">📋 نسخ للصق في Excel</button>
-      <button class="btnprim" style="margin:0;background:#748995" onclick="openShare()">🔗 مشاركة الرابط</button>
-    </div>
+    <div class="ct">الأداء الشهري</div>
+    <canvas id="c1" height="140"></canvas>
   </div>
+
 </div>
 
-</div><!-- /main -->
-
-<div class="footer">المدينة الطبية الجامعية — جامعة الملك سعود · Riyadh, KSA · KSUMC Dashboard 2026 &nbsp;|&nbsp; جميع البيانات سرية للاستخدام الداخلي</div>
-<div class="stripe"></div>
-
-<!-- EDITOR MODAL -->
+<!-- Editor -->
 <div class="modal-ov" id="emod">
   <div class="modal">
-    <div class="ms">أدخل عدد الحالات الحرجة المنقولة لكل شهر — ستتحدث جميع الرسوم والمؤشرات تلقائياً، والرابط يحفظ البيانات للمشاركة</div>
-    <div class="mgrid" id="minp"></div>
-    <div class="macts">
-      <button class="btncanc" onclick="closeEd()">إلغاء</button>
-      <button class="btnapply" onclick="applyData()">✅ تطبيق وتحديث اللوحة</button>
-    </div>
+    <div class="ct">تعديل الحالات الشهرية</div>
+    <div class="mgrid" id="minp"></div><br>
+    <button class="abtn" onclick="closeEd()">إلغاء</button>
+    <button class="abtn" onclick="applyData()">✅ تطبيق</button>
   </div>
 </div>
 
-<!-- SHARE MODAL -->
-<div class="modal-ov" id="smod">
-  <div class="smodal">
-    <div class="mt">🔗 مشاركة لوحة التحكم</div>
-    <div class="ms">الرابط يحتوي على البيانات — شاركه مع زملائك في المدينة الطبية الجامعية وسيرون نفس الأرقام</div>
-    <div class="surl">
-      <input type="text" id="surl" readonly>
-      <button class="scpy" onclick="cpyURL()">نسخ</button>
-    </div>
-    <div class="smeth">
-      <button class="sbtn" onclick="wa()"><span class="sico">💬</span>واتساب</button>
-      <button class="sbtn" onclick="em()"><span class="sico">📧</span>بريد</button>
-      <button class="sbtn" onclick="window.print()"><span class="sico">🖨️</span>طباعة</button>
-    </div>
-    <div style="margin-top:14px;text-align:center"><button class="btncanc" onclick="closeShare()">إغلاق</button></div>
-  </div>
-</div>
-
-<div class="toast" id="toast">✅ تم!</div>
+<div class="toast" id="toast">تم</div>
 
 <script>
+/* ======================= DATA ======================= */
 const MN=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
-const QN=['الربع الأول','الربع الثاني','الربع الثالث','الربع الرابع'];
-const QC=['#0084BD','#005f8a','#3BAAD4','#748995'];
-const BC=[...Array(3).fill('#0084BD'),...Array(3).fill('#005f8a'),...Array(3).fill('#3BAAD4'),...Array(3).fill('#748995')];
-
 let D=[50,66,77,90,70,40,60,80,55,50,67,90];
-const CHS={};
+let chart;
 
-function loadHash(){try{const h=location.hash.slice(1);if(h){const d=JSON.parse(atob(h));if(Array.isArray(d)&&d.length===12)D=d;}}catch(e){}}
-loadHash();
-
-const BASE={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-  scales:{x:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:'Cairo',size:10},color:'#748995'}},
-          y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:'Cairo',size:10},color:'#748995'},beginAtZero:true}}};
-
-function ma(a,w){return a.map((_,i)=>{const s=a.slice(Math.max(0,i-Math.floor(w/2)),i+Math.ceil(w/2));return+(s.reduce((x,y)=>x+y,0)/s.length).toFixed(1);});}
-function dc(id){if(CHS[id]){CHS[id].destroy();delete CHS[id];}}
-function mk(id,cfg){dc(id);CHS[id]=new Chart(document.getElementById(id),cfg);return CHS[id];}
-
-function renderAll(){
-  const d=D,qt=[d.slice(0,3),d.slice(3,6),d.slice(6,9),d.slice(9,12)].map(q=>q.reduce((a,b)=>a+b,0));
-  const tot=qt.reduce((a,b)=>a+b,0);
-
-  // KPIs
-  document.getElementById('kv1').textContent=tot.toLocaleString();
-  document.getElementById('kv2').textContent=tot.toLocaleString();
-  document.getElementById('kv3').textContent=tot.toLocaleString();
-  document.getElementById('kv4').textContent=(tot*2).toLocaleString();
-
-  // Quarter totals + month displays
-  [1,2,3,4].forEach(i=>{const el=document.getElementById('qt'+i);if(el)el.textContent=qt[i-1];});
-  d.forEach((v,i)=>{const el=document.getElementById('md'+i);if(el)el.textContent=v;});
-
-  // Progress bars for months
-  for(let g=0;g<4;g++){
-    const sl=d.slice(g*3,(g+1)*3),qt_=sl.reduce((a,b)=>a+b,0);
-    sl.forEach((v,j)=>{const i=g*3+j,p=qt_>0?Math.round(v/qt_*100):0;
-      const pf=document.getElementById('pf'+i),pv=document.getElementById('pv'+i);
-      if(pf)pf.style.width=p+'%';if(pv)pv.textContent=p+'%';});
-  }
-
-  // Compare bars
-  const mxq=Math.max(...qt);
-  ['q1','q2','q3','q4'].forEach((k,i)=>{
-    const pf=document.getElementById('pr'+k),pv=document.getElementById('prv'+(i+1));
-    if(pf)pf.style.width=(mxq>0?qt[i]/mxq*100:0)+'%';if(pv)pv.textContent=qt[i];
-  });
-
-  // Summary table
-  const sb=document.getElementById('stb');
-  if(sb){
-    const rows=[
-      ['الربع الأول',qt[0],'#e6f4fb','#0084BD'],['الربع الثاني',qt[1],'#dff0f8','#005f8a'],
-      ['النصف الأول',qt[0]+qt[1],'#b8ddef','#004a70'],['الربع الثالث',qt[2],'#e8f6fc','#3BAAD4'],
-      ['الربع الرابع',qt[3],'#eaeef0','#748995'],['النصف الثاني',qt[2]+qt[3],'#dde3e8','#4a5568'],
-    ];
-    sb.innerHTML=rows.map(([l,v,bg,col])=>
-      `<tr><td><span class="pill" style="background:${bg};color:${col}">${l}</span></td><td><b>${v}</b></td><td>${v}</td><td>${v}</td><td>${v}</td><td>${v*2}</td><td>${tot>0?(v/tot*100).toFixed(1):0}%</td></tr>`
-    ).join('')+`<tr><td colspan="7" style="background:#0084BD;color:#fff;font-weight:800;text-align:center">الإجمالي السنوي: ${tot.toLocaleString()} حالة</td></tr>`;
-  }
-
-  // Detail table
-  const db=document.getElementById('dtb');
-  if(db){db.innerHTML=d.map((v,i)=>`<tr><td>${i+1}</td><td>${MN[i]}</td><td><span class="pill" style="background:${QC[Math.floor(i/3)]}22;color:${QC[Math.floor(i/3)]}">${QN[Math.floor(i/3)]}</span></td><td><b>${v}</b></td><td>${v}</td><td>${v}</td><td>${v}</td><td>${v}</td><td>${v*2}</td></tr>`).join('');}
-
-  renderMainCharts(d,qt,tot);
-  renderQCharts(d);
-  renderCmpCharts(d,qt);
-
-  // Update URL hash
-  try{history.replaceState(null,'','#'+btoa(JSON.stringify(d)));}catch(e){}
-}
-
-function renderMainCharts(d,qt,tot){
-  const maV=ma(d,3);
-  mk('c1',{type:'bar',data:{labels:MN,datasets:[{data:d,backgroundColor:BC,borderRadius:5,borderSkipped:false}]},options:{...BASE,scales:{...BASE.scales,x:{...BASE.scales.x,ticks:{...BASE.scales.x.ticks,maxRotation:45}}}}});
-  mk('c2',{type:'doughnut',data:{labels:QN.map((q,i)=>q+' — '+qt[i]),datasets:[{data:qt,backgroundColor:QC,borderWidth:3,borderColor:'#fff',hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:true,position:'bottom',labels:{font:{family:'Cairo',size:11},color:'#1a1a1a',boxWidth:12,padding:7}}}}});
-  mk('c3',{type:'line',data:{labels:MN,datasets:[{data:d,borderColor:'#0084BD',backgroundColor:'rgba(0,132,189,.1)',tension:.4,fill:true,pointRadius:4,pointBackgroundColor:'#fff',pointBorderColor:'#0084BD',pointBorderWidth:2,borderWidth:2.5},{data:maV,borderColor:'#E3E0D2',borderWidth:2,borderDash:[5,4],tension:.4,pointRadius:0,fill:false}]},options:{...BASE}});
-  mk('c4',{type:'bar',data:{labels:['النصف الأول','النصف الثاني'],datasets:[{data:[qt[0]+qt[1],qt[2]+qt[3]],backgroundColor:['#0084BD','#748995'],borderRadius:10,borderSkipped:false,barPercentage:.5}]},options:{...BASE}});
-}
-
-function qB(id,labs,sl,cols){mk(id,{type:'bar',data:{labels:labs,datasets:[{data:sl,backgroundColor:cols,borderRadius:8,barPercentage:.55}]},options:{...BASE,plugins:{legend:{display:false}}}});}
-function qD(id,labs,sl,cols){mk(id,{type:'doughnut',data:{labels:labs.map((l,i)=>l+' '+sl[i]),datasets:[{data:sl,backgroundColor:cols,borderWidth:3,borderColor:'#fff',hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{display:true,position:'bottom',labels:{font:{family:'Cairo',size:11},color:'#1a1a1a',boxWidth:10,padding:6}}}}});}
-
-function renderQCharts(d){
-  qB('cq1a',['يناير','فبراير','مارس'],d.slice(0,3),['#0084BD','#3BAAD4','#005f8a']);
-  qD('cq1b',['يناير','فبراير','مارس'],d.slice(0,3),['#0084BD','#3BAAD4','#005f8a']);
-  qB('cq2a',['أبريل','مايو','يونيو'],d.slice(3,6),['#0084BD','#3BAAD4','#005f8a']);
-  qD('cq2b',['أبريل','مايو','يونيو'],d.slice(3,6),['#0084BD','#3BAAD4','#005f8a']);
-  qB('cq3a',['يوليو','أغسطس','سبتمبر'],d.slice(6,9),['#3BAAD4','#0084BD','#005f8a']);
-  qD('cq3b',['يوليو','أغسطس','سبتمبر'],d.slice(6,9),['#3BAAD4','#0084BD','#005f8a']);
-  qB('cq4a',['أكتوبر','نوفمبر','ديسمبر'],d.slice(9,12),['#748995','#4a6070','#2c3e50']);
-  qD('cq4b',['أكتوبر','نوفمبر','ديسمبر'],d.slice(9,12),['#748995','#4a6070','#2c3e50']);
-}
-
-function renderCmpCharts(d,qt){
-  const maV=ma(d,3);
-  const sq=[...qt].map((v,i)=>({v,i})).sort((a,b)=>b.v-a.v);
-  mk('cc1',{type:'bar',data:{labels:sq.map(x=>QN[x.i]),datasets:[{data:sq.map(x=>x.v),backgroundColor:sq.map(x=>QC[x.i]),borderRadius:8,barPercentage:.55}]},options:{...BASE,plugins:{legend:{display:false}}}});
-  const sv=[...d].sort((a,b)=>a-b);
-  const minM=MN[d.indexOf(sv[0])],maxM=MN[d.lastIndexOf(sv[sv.length-1])];
-  mk('cc2',{type:'bar',data:{labels:[minM+' (أدنى)',maxM+' (أعلى)'],datasets:[{data:[sv[0],sv[sv.length-1]],backgroundColor:['#E3E0D2','#0084BD'],borderRadius:8,barPercentage:.45}]},options:{...BASE}});
-  mk('cc3',{type:'line',data:{labels:MN,datasets:[{data:d,borderColor:'#0084BD',backgroundColor:'rgba(0,132,189,.08)',tension:.4,fill:true,pointRadius:4,pointBackgroundColor:'#fff',pointBorderColor:'#0084BD',pointBorderWidth:2,borderWidth:2.5,label:'الحالات'},{data:maV,borderColor:'#748995',borderWidth:1.8,borderDash:[5,4],tension:.4,pointRadius:0,fill:false,label:'متوسط متحرك'}]},options:{...BASE,plugins:{legend:{display:true,labels:{font:{family:'Cairo',size:11},color:'#748995',boxWidth:10,padding:9}}}}});
-}
-
-function openEditor(){
-  document.getElementById('minp').innerHTML=D.map((v,i)=>`<div class="mf"><label>${MN[i]}</label><input type="number" id="in${i}" value="${v}" min="0" max="9999"></div>`).join('');
-  document.getElementById('emod').classList.add('open');
-}
-function closeEd(){document.getElementById('emod').classList.remove('open');}
-function applyData(){
-  D=D.map((_,i)=>Math.max(0,Math.min(9999,parseInt(document.getElementById('in'+i).value)||0)));
-  closeEd();renderAll();toast('✅ تم تحديث اللوحة بنجاح!');
-}
-function openShare(){document.getElementById('surl').value=location.href;document.getElementById('smod').classList.add('open');}
-function closeShare(){document.getElementById('smod').classList.remove('open');}
-function cpyURL(){try{navigator.clipboard.writeText(location.href);}catch(e){}document.getElementById('surl').select();document.execCommand('copy');toast('✅ تم نسخ الرابط!');}
-function wa(){window.open('https://wa.me/?text='+encodeURIComponent('لوحة الأداء الطبي — المدينة الطبية الجامعية KSUMC 2026\n'+location.href));}
-function em(){window.open('mailto:?subject=لوحة الأداء KSUMC 2026&body='+encodeURIComponent(location.href));}
-function exportCSV(){
-  const rows=[['الشهر','الربع','حالات حرجة','نقل طبي','ميدفاك','تدريب','مشاركات'],...D.map((v,i)=>[MN[i],QN[Math.floor(i/3)],v,v,v,v,v*2])];
-  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(rows.map(r=>r.join(',')).join('\n'));a.download='KSUMC_2026.csv';a.click();
-}
-function copyTbl(){try{navigator.clipboard.writeText(D.map((v,i)=>[MN[i],QN[Math.floor(i/3)],v,v,v,v,v*2].join('\t')).join('\n'));}catch(e){}toast('✅ تم النسخ — الصق مباشرة في Excel أو Google Sheets');}
-function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');}
-function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
-
-window.addEventListener('DOMContentLoaded',()=>renderAll());
-</script>document.addEventListener("DOMContentLoaded",()=>{
-  if(isAdmin()){
-    document.getElementById("editBtn").style.display="inline-flex";
-  }
-});
-</script>button class="abtn" onclick="adminLogin()">🔐 دخول الأدمن</button>
-<button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">
-✏️ تعديل البيانات
-</button>
-</script>
-  /* ======================= ADMIN AUTH ======================= */
-const ADMIN_PASSWORD = "KSUMC2026";
-
-function isAdmin(){
-  return sessionStorage.getItem("admin") === "true";
-}
-
+/* ======================= ADMIN ======================= */
+const ADMIN_PASSWORD="KSUMC2026";
+function isAdmin(){return sessionStorage.getItem("admin")==="true";}
 function adminLogin(){
-  const p = prompt("أدخل كلمة مرور الأدمن:");
-  if(p === ADMIN_PASSWORD){
+  const p=prompt("أدخل كلمة مرور الأدمن:");
+  if(p===ADMIN_PASSWORD){
     sessionStorage.setItem("admin","true");
     alert("✅ تم الدخول كأدمن");
     location.reload();
-  }else{
-    alert("❌ كلمة المرور غير صحيحة");
-  }
+  }else alert("❌ كلمة المرور غير صحيحة");
 }
 
-/* ✅ إظهار زر التعديل فقط للأدمن */
-document.addEventListener("DOMContentLoaded", () => {
-  if (isAdmin()) {
-    const btn = document.getElementById("editBtn");
-    if (btn) btn.style.display = "inline-flex";
-  }
+/* ======================= INIT ======================= */
+window.addEventListener("DOMContentLoaded",()=>{
+  if(isAdmin()) document.getElementById("editBtn").style.display="inline-block";
+  render();
 });
-document.addEventListener("DOMContentLoaded", () => {
-  if (isAdmin()) {
-    const btn = document.getElementById("editBtn");
-    if (btn) btn.style.display = "inline-flex";
-  }
-});
-``/* ================== EDITOR ================== */
+
+/* ======================= RENDER ======================= */
+function render(){
+  const tot=D.reduce((a,b)=>a+b,0);
+  kv1.textContent=tot;
+  kv2.textContent=tot;
+  kv3.textContent=tot;
+  kv4.textContent=tot*2;
+
+  if(chart) chart.destroy();
+  chart=new Chart(c1,{
+    type:'bar',
+    data:{labels:MN,datasets:[{data:D,backgroundColor:'#0084BD'}]},
+    options:{responsive:true,maintainAspectRatio:false}
+  });
+}
+
+/* ======================= EDIT ======================= */
 function openEditor(){
-  const minp = document.getElementById('minp');
-
-  if(!minp){
-    alert('خطأ: نافذة التعديل غير موجودة');
-    return;
-  }
-
-  minp.innerHTML = MN.map((m,i)=>`
+  minp.innerHTML=MN.map((m,i)=>`
     <div class="mf">
-      <label>${m} — منقولة</label>
-      <input type="number" id="inT${i}" value="${D_T[i] || 0}" min="0">
-    </div>
-    <div class="mf">
-      <label>${m} — غير منقولة</label>
-      <input type="number" id="inN${i}" value="${D_N[i] || 0}" min="0">
-    </div>
-  `).join('');
-
-  document.getElementById('emod').classList.add('open');
+      <label>${m}</label>
+      <input type="number" id="in${i}" value="${D[i]}">
+    </div>`).join('');
+  emod.classList.add("open");
 }
+function closeEd(){emod.classList.remove("open");}
+function applyData(){
+  D=D.map((_,i)=>parseInt(document.getElementById("in"+i).value)||0);
+  closeEd();render();toast("✅ تم التحديث");
+}
+
+/* ======================= UTILS ======================= */
+function exportCSV(){
+  const rows=[['الشهر','الحالات'],...D.map((v,i)=>[MN[i],v])];
+  const a=document.createElement("a");
+  a.href="data:text/csv;charset=utf-8,\uFEFF"+rows.map(r=>r.join(',')).join('\n');
+  a.download="KSUMC_2026.csv";
+  a.click();
+}
+function toast(m){
+  const t=document.getElementById("toast");
+  t.textContent=m;t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2000);
+}
+</script>
+
+</body>
+</html>
