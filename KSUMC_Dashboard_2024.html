@@ -19,7 +19,6 @@
   --orange:#f97316;--orange-lt:#ffedd5;
   --purple:#8b5cf6;--purple-lt:#ede9fe;
   --teal:#0d9488;--teal-lt:#ccfbf1;
-  --pink:#ec4899;--pink-lt:#fce7f3;
   --amber:#f59e0b;--amber-lt:#fef3c7;
   --emerald:#10b981;--emerald-lt:#d1fae5;
 }
@@ -46,7 +45,24 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .page{display:none}.page.active{display:block}
 .ebanner{background:#fff;border:1.5px dashed var(--kb);border-radius:var(--r);padding:10px 15px;margin-bottom:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .ebanner .es{font-size:12px;color:var(--text2)}
-/* KPI Grid - 9 cards */
+
+/* ===== KPI Grid — 5 merged cards in overview ===== */
+.kpi-grid-ov{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+@media(max-width:1100px){.kpi-grid-ov{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:650px){.kpi-grid-ov{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:380px){.kpi-grid-ov{grid-template-columns:1fr}}
+
+/* Merged KPI card — bigger, with sub-breakdown */
+.kpi-merged{background:var(--card);border-radius:var(--r);padding:16px 18px;box-shadow:0 2px 12px rgba(0,132,189,.1);border-top:5px solid var(--c,var(--kb));transition:transform .15s;position:relative;overflow:hidden}
+.kpi-merged:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,132,189,.15)}
+.kpi-merged::after{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--c1,var(--kb)),var(--c2,var(--kb-mid)))}
+.kpi-merged-lbl{font-size:11px;color:var(--text2);margin-bottom:6px;font-weight:700;line-height:1.4}
+.kpi-merged-val{font-size:34px;font-weight:800;color:var(--c,var(--kb));line-height:1;margin-bottom:8px}
+.kpi-merged-breakdown{display:flex;gap:6px;flex-wrap:wrap}
+.kpi-bp{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:12px;font-size:10px;font-weight:700}
+.kpi-bp-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* ===== Legacy 9-card grid for month pages ===== */
 .kpi-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:10px;margin-bottom:16px}
 @media(max-width:1300px){.kpi-grid{grid-template-columns:repeat(5,1fr)}}
 @media(max-width:900px){.kpi-grid{grid-template-columns:repeat(3,1fr)}}
@@ -58,6 +74,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .kpi-val{font-size:26px;font-weight:800;color:var(--c,var(--kb));line-height:1}
 .kpi-sub{font-size:10px;color:var(--text3);margin-top:3px}
 .kpi-tag{display:inline-block;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:700;background:var(--kb-lt);color:var(--kb)}
+
 .card{background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--sh);border:1px solid var(--border);margin-bottom:12px}
 .ch{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:11px}
 .ct{font-size:13px;font-weight:700;color:var(--text)}
@@ -73,6 +90,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .sec{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:9px;border-bottom:2px solid var(--kb-lt)}
 .sec::before{content:'';width:4px;height:20px;background:var(--kb);border-radius:2px;flex-shrink:0}
 .sec span{font-size:14px;font-weight:700;color:var(--kb)}
+
 /* Training Banner */
 .train-banner{background:linear-gradient(135deg,#1e40af,#3b82f6);border-radius:var(--r);padding:14px 18px;margin-bottom:12px;color:#fff}
 .train-banner-title{font-size:13px;font-weight:800;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:8px}
@@ -82,6 +100,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .train-box-title{font-size:11px;font-weight:700;opacity:.9;margin-bottom:6px}
 .train-box-num{font-size:36px;font-weight:800}
 .train-box-lbl{font-size:10px;opacity:.75;margin-top:3px}
+
 /* Month Hero */
 .mhero{border-radius:var(--r);padding:18px 20px;margin-bottom:14px;color:#fff}
 .mht{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:10px}
@@ -97,11 +116,13 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .mmc{background:rgba(255,255,255,.15);border-radius:8px;padding:11px;text-align:center;border:1px solid rgba(255,255,255,.2)}
 .mmn{font-size:9.5px;font-weight:700;margin-bottom:4px;opacity:.9;line-height:1.3}
 .mmv{font-size:20px;font-weight:800}
+
 .pr-row{display:flex;align-items:center;gap:9px;margin-bottom:8px}
 .pr-lbl{font-size:11px;color:var(--text2);min-width:130px;text-align:right;font-weight:600}
 .pr-tr{flex:1;background:var(--kg-lt);border-radius:4px;height:8px;overflow:hidden}
 .pr-fi{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
 .pr-val{font-size:11px;font-weight:700;min-width:34px;color:var(--kb)}
+
 .tw{overflow-x:auto;border-radius:8px;border:1px solid var(--border)}
 table{width:100%;border-collapse:collapse;font-size:11px}
 th{background:var(--kb);color:#fff;padding:8px 8px;text-align:center;font-weight:700;font-family:'Cairo',sans-serif;font-size:10.5px}
@@ -115,12 +136,14 @@ tr:hover td{background:var(--kb-lt)}
 .lsq{width:10px;height:10px;border-radius:2px;flex-shrink:0}
 .btnprim{background:var(--kb);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-family:'Cairo',sans-serif;font-size:12.5px;font-weight:700;cursor:pointer}
 .btnprim:hover{background:var(--kb-dk)}
+
 /* Evacuation highlight card */
 .evac-banner{background:linear-gradient(135deg,#0d9488,#0f766e);border-radius:var(--r);padding:14px 18px;margin-bottom:12px;color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .evac-title{font-size:14px;font-weight:800}
 .evac-sub{font-size:11px;opacity:.8;margin-top:2px}
 .evac-num{font-size:38px;font-weight:800;color:#fff}
 .evac-lbl{font-size:11px;opacity:.8}
+
 /* Modals */
 .modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;align-items:center;justify-content:center}
 .modal-ov.open{display:flex}
@@ -149,11 +172,6 @@ tr:hover td{background:var(--kb-lt)}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--kb);color:#fff;padding:9px 20px;border-radius:20px;font-family:'Cairo',sans-serif;font-size:12px;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none;z-index:2000}
 .toast.show{opacity:1}
 .footer{background:var(--kb);color:rgba(255,255,255,.72);text-align:center;padding:12px;font-size:11px;font-family:'Cairo',sans-serif}
-.stat-boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
-@media(max-width:600px){.stat-boxes{grid-template-columns:1fr}}
-.sbox{border-radius:9px;padding:13px;text-align:center}
-.sbox-val{font-size:28px;font-weight:800}
-.sbox-lbl{font-size:11px;margin-top:3px;opacity:.85}
 @media print{.header .hdr-acts,.ebanner,.nb,.abtn{display:none!important}.header{position:relative}.page{display:block!important}}
 </style>
 </head>
@@ -228,73 +246,88 @@ tr:hover td{background:var(--kb-lt)}
     <span class="es">لوحة الاداء التشغيلي الشهري — المدينة الطبية الجامعية KSUMC 2026 — ادخل كمسوؤل لتعديل البيانات</span>
   </div>
 
-  <!-- 9 KPI Cards -->
-  <div class="kpi-grid">
-    <div class="kpi" style="--c:#0084BD">
-      <div class="kpi-lbl">حالات طارئة منقولة</div>
-      <div class="kpi-val" id="kv_trans">0</div>
-      <div class="kpi-sub"><span class="kpi-tag">منقولة</span></div>
-    </div>
-    <div class="kpi" style="--c:#ef4444">
-      <div class="kpi-lbl">حالات طارئة غير منقولة</div>
-      <div class="kpi-val" id="kv_nontrans">0</div>
-      <div class="kpi-sub"><span class="kpi-tag" style="background:#fee2e2;color:#ef4444">غير منقولة</span></div>
-    </div>
-    <div class="kpi" style="--c:#22c55e">
-      <div class="kpi-lbl">نقل طبي داخلي</div>
-      <div class="kpi-val" id="kv_trin">0</div>
-      <div class="kpi-sub"><span class="kpi-tag" style="background:#dcfce7;color:#22c55e">داخلي</span></div>
-    </div>
-    <div class="kpi" style="--c:#f97316">
-      <div class="kpi-lbl">نقل طبي خارجي</div>
-      <div class="kpi-val" id="kv_trout">0</div>
-      <div class="kpi-sub"><span class="kpi-tag" style="background:#ffedd5;color:#f97316">خارجي</span></div>
-    </div>
-    <div class="kpi" style="--c:#8b5cf6">
-      <div class="kpi-lbl">مشاركات طبية داخلية</div>
-      <div class="kpi-val" id="kv_partin">0</div>
-      <div class="kpi-sub"><span class="kpi-tag" style="background:#ede9fe;color:#8b5cf6">داخلية</span></div>
-    </div>
-    <div class="kpi" style="--c:#748995">
-      <div class="kpi-lbl">مشاركات طبية خارجية</div>
-      <div class="kpi-val" id="kv_partout">0</div>
-      <div class="kpi-sub"><span class="kpi-tag" style="background:#eaeef0;color:#748995">خارجية</span></div>
-    </div>
-    <div class="kpi" style="--c:#0d9488">
-      <div class="kpi-lbl">حالات الاخلاء الطبي</div>
-      <div class="kpi-val" id="kv_evac">0</div>
-      <div class="kpi-sub"><span class="kpi-tag" style="background:#ccfbf1;color:#0d9488">اخلاء طبي</span></div>
-    </div>
-    <div class="kpi" style="--c:#f59e0b">
-      <div class="kpi-lbl">طلاب الكليات (التدريب الميداني)</div>
-      <div class="kpi-val" id="kv_trainstud">0</div>
-      <div class="kpi-sub"><span class="kpi-tag" style="background:#fef3c7;color:#f59e0b">ميداني</span></div>
-    </div>
-    <div class="kpi" style="--c:#10b981">
-      <div class="kpi-lbl">طلاب الامتياز والاطباء المقيمين</div>
-      <div class="kpi-val" id="kv_trainres">0</div>
-      <div class="kpi-sub"><span class="kpi-tag" style="background:#d1fae5;color:#10b981">امتياز / مقيم</span></div>
-    </div>
-  </div>
+  <!-- 5 MERGED KPI Cards -->
+  <div class="kpi-grid-ov">
 
-  <!-- Training Programs Banner -->
-  <div class="train-banner">
-    <div class="train-banner-title">البرامج التدريبية الطبية — 2026</div>
-    <div class="train-grid">
-      <div class="train-box">
-        <div class="train-box-title">طلاب الكليات — التدريب الميداني</div>
-        <div class="train-box-num" id="train_stud_big">0</div>
-        <div class="train-box-lbl">اجمالي الطلاب المتدربين ميدانيا</div>
-      </div>
-      <div class="train-box" style="background:rgba(16,185,129,.25);border-color:rgba(16,185,129,.5)">
-        <div class="train-box-title">طلاب الامتياز والاطباء المقيمين</div>
-        <div class="train-box-num" id="train_res_big">0</div>
-        <div class="train-box-lbl">اجمالي المتدربين من الامتياز والمقيمين</div>
+    <!-- 1. الحالات الطارئة (منقولة + غير منقولة) -->
+    <div class="kpi-merged" style="--c:#0084BD;--c1:#005f8a;--c2:#3BAAD4">
+      <div class="kpi-merged-lbl">اجمالي الحالات الطارئة</div>
+      <div class="kpi-merged-val" id="kv_crit_total">0</div>
+      <div class="kpi-merged-breakdown">
+        <span class="kpi-bp" style="background:#e6f4fb;color:#005f8a">
+          <span class="kpi-bp-dot" style="background:#0084BD"></span>
+          منقولة: <b id="kv_trans_sub">0</b>
+        </span>
+        <span class="kpi-bp" style="background:#fee2e2;color:#b91c1c">
+          <span class="kpi-bp-dot" style="background:#ef4444"></span>
+          غير منقولة: <b id="kv_nontrans_sub">0</b>
+        </span>
       </div>
     </div>
+
+    <!-- 2. النقل الطبي (داخلي + خارجي) -->
+    <div class="kpi-merged" style="--c:#16a34a;--c1:#15803d;--c2:#22c55e">
+      <div class="kpi-merged-lbl">اجمالي النقل الطبي</div>
+      <div class="kpi-merged-val" id="kv_tr_total">0</div>
+      <div class="kpi-merged-breakdown">
+        <span class="kpi-bp" style="background:#dcfce7;color:#15803d">
+          <span class="kpi-bp-dot" style="background:#22c55e"></span>
+          داخلي: <b id="kv_trin_sub">0</b>
+        </span>
+        <span class="kpi-bp" style="background:#ffedd5;color:#c2410c">
+          <span class="kpi-bp-dot" style="background:#f97316"></span>
+          خارجي: <b id="kv_trout_sub">0</b>
+        </span>
+      </div>
+    </div>
+
+    <!-- 3. المشاركات الطبية (داخلية + خارجية) -->
+    <div class="kpi-merged" style="--c:#7c3aed;--c1:#6d28d9;--c2:#a78bfa">
+      <div class="kpi-merged-lbl">اجمالي المشاركات الطبية</div>
+      <div class="kpi-merged-val" id="kv_part_total">0</div>
+      <div class="kpi-merged-breakdown">
+        <span class="kpi-bp" style="background:#ede9fe;color:#6d28d9">
+          <span class="kpi-bp-dot" style="background:#8b5cf6"></span>
+          داخلية: <b id="kv_partin_sub">0</b>
+        </span>
+        <span class="kpi-bp" style="background:#f1f5f9;color:#475569">
+          <span class="kpi-bp-dot" style="background:#748995"></span>
+          خارجية: <b id="kv_partout_sub">0</b>
+        </span>
+      </div>
+    </div>
+
+    <!-- 4. حالات الاخلاء الطبي -->
+    <div class="kpi-merged" style="--c:#0d9488;--c1:#0f766e;--c2:#2dd4bf">
+      <div class="kpi-merged-lbl">حالات الاخلاء الطبي</div>
+      <div class="kpi-merged-val" id="kv_evac">0</div>
+      <div class="kpi-merged-breakdown">
+        <span class="kpi-bp" style="background:#ccfbf1;color:#0f766e">
+          <span class="kpi-bp-dot" style="background:#0d9488"></span>
+          اخلاء طبي موثق
+        </span>
+      </div>
+    </div>
+
+    <!-- 5. البرامج التدريبية (ميداني + امتياز/مقيم) -->
+    <div class="kpi-merged" style="--c:#b45309;--c1:#92400e;--c2:#f59e0b">
+      <div class="kpi-merged-lbl">اجمالي البرامج التدريبية</div>
+      <div class="kpi-merged-val" id="kv_train_total">0</div>
+      <div class="kpi-merged-breakdown">
+        <span class="kpi-bp" style="background:#fef3c7;color:#92400e">
+          <span class="kpi-bp-dot" style="background:#f59e0b"></span>
+          ميداني: <b id="kv_trainstud_sub">0</b>
+        </span>
+        <span class="kpi-bp" style="background:#d1fae5;color:#065f46">
+          <span class="kpi-bp-dot" style="background:#10b981"></span>
+          امتياز/مقيم: <b id="kv_trainres_sub">0</b>
+        </span>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Evacuation Banner -->
+  <!-- Evacuation Spark Banner -->
   <div class="evac-banner">
     <div>
       <div class="evac-title">حالات الاخلاء الطبي — 2026</div>
@@ -498,7 +531,6 @@ tr:hover td{background:var(--kb-lt)}
   <div class="modal">
     <div class="mt-h">تعديل البيانات الشهرية</div>
     <div class="ms">ادخل البيانات لكل شهر — ستتحدث جميع الرسوم والمؤشرات تلقائيا</div>
-
     <div class="ed-sec">
       <div class="ed-sec-title">الحالات الطارئة المنقولة (12 شهر)</div>
       <div class="mgrid" id="inp_trans"></div>
@@ -535,7 +567,6 @@ tr:hover td{background:var(--kb-lt)}
       <div class="ed-sec-title" style="background:#d1fae5;border-color:#10b981;color:#065f46">طلاب الامتياز والاطباء المقيمين (12 شهر)</div>
       <div class="mgrid" id="inp_trainres"></div>
     </div>
-
     <div class="macts">
       <button class="btncanc" onclick="closeEd()">الغاء</button>
       <button class="btnapply" onclick="applyData()">تطبيق وتحديث اللوحة</button>
@@ -646,18 +677,35 @@ function sum(arr){ return arr.reduce((a,b)=>a+b,0); }
 
 function renderAll(){
   const d=DATA;
-  document.getElementById('kv_trans').textContent      = sum(d.trans).toLocaleString();
-  document.getElementById('kv_nontrans').textContent   = sum(d.nontrans).toLocaleString();
-  document.getElementById('kv_trin').textContent       = sum(d.trin).toLocaleString();
-  document.getElementById('kv_trout').textContent      = sum(d.trout).toLocaleString();
-  document.getElementById('kv_partin').textContent     = sum(d.partin).toLocaleString();
-  document.getElementById('kv_partout').textContent    = sum(d.partout).toLocaleString();
-  document.getElementById('kv_evac').textContent       = sum(d.evac).toLocaleString();
-  document.getElementById('kv_trainstud').textContent  = sum(d.trainstud).toLocaleString();
-  document.getElementById('kv_trainres').textContent   = sum(d.trainres).toLocaleString();
-  document.getElementById('evac_big').textContent      = sum(d.evac).toLocaleString();
-  document.getElementById('train_stud_big').textContent= sum(d.trainstud).toLocaleString();
-  document.getElementById('train_res_big').textContent = sum(d.trainres).toLocaleString();
+  const totTrans    = sum(d.trans);
+  const totNontrans = sum(d.nontrans);
+  const totTrin     = sum(d.trin);
+  const totTrout    = sum(d.trout);
+  const totPartin   = sum(d.partin);
+  const totPartout  = sum(d.partout);
+  const totEvac     = sum(d.evac);
+  const totStud     = sum(d.trainstud);
+  const totRes      = sum(d.trainres);
+
+  /* ---- Merged KPI cards (Overview only) ---- */
+  document.getElementById('kv_crit_total').textContent  = (totTrans+totNontrans).toLocaleString();
+  document.getElementById('kv_trans_sub').textContent   = totTrans.toLocaleString();
+  document.getElementById('kv_nontrans_sub').textContent= totNontrans.toLocaleString();
+
+  document.getElementById('kv_tr_total').textContent    = (totTrin+totTrout).toLocaleString();
+  document.getElementById('kv_trin_sub').textContent    = totTrin.toLocaleString();
+  document.getElementById('kv_trout_sub').textContent   = totTrout.toLocaleString();
+
+  document.getElementById('kv_part_total').textContent  = (totPartin+totPartout).toLocaleString();
+  document.getElementById('kv_partin_sub').textContent  = totPartin.toLocaleString();
+  document.getElementById('kv_partout_sub').textContent = totPartout.toLocaleString();
+
+  document.getElementById('kv_evac').textContent        = totEvac.toLocaleString();
+  document.getElementById('evac_big').textContent       = totEvac.toLocaleString();
+
+  document.getElementById('kv_train_total').textContent = (totStud+totRes).toLocaleString();
+  document.getElementById('kv_trainstud_sub').textContent= totStud.toLocaleString();
+  document.getElementById('kv_trainres_sub').textContent = totRes.toLocaleString();
 
   renderOverviewCharts(d);
   renderMonthPages(d);
@@ -1130,4 +1178,3 @@ window.addEventListener('DOMContentLoaded',()=>{
 </script>
 </body>
 </html>
- 
