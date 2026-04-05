@@ -181,7 +181,7 @@ tr:hover td{background:var(--kb-lt)}
     <div class="hdr-acts">
       <button class="abtn" id="loginBtn" onclick="adminLogin()">
         <svg class="abtn-icon" viewBox="0 0 24 24"><path d="M12 2a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0 014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>
-        دخول الادمن
+        دخول المسوؤل
       </button>
       <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">
         <svg class="abtn-icon" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
@@ -225,7 +225,7 @@ tr:hover td{background:var(--kb-lt)}
 <!-- ==================== OVERVIEW ==================== -->
 <div id="ov" class="page active">
   <div class="ebanner">
-    <span class="es">لوحة الاداء التشغيلي الشهري — المدينة الطبية الجامعية KSUMC 2026 — ادخل كادمن لتعديل البيانات</span>
+    <span class="es">لوحة الاداء التشغيلي الشهري — المدينة الطبية الجامعية KSUMC 2026 — ادخل كمسوؤل لتعديل البيانات</span>
   </div>
 
   <!-- 9 KPI Cards -->
@@ -601,20 +601,20 @@ function isAdmin(){ return sessionStorage.getItem('admin')==='true'; }
 
 function adminLogin(){
   if(isAdmin()){
-    if(confirm('انت مسجل دخول كادمن. هل تريد تسجيل الخروج؟')){
+    if(confirm('انت مسجل دخول كمسوؤل. هل تريد تسجيل الخروج؟')){
       sessionStorage.removeItem('admin');
       document.getElementById('editBtn').style.display='none';
-      document.getElementById('loginBtn').textContent='دخول الادمن';
+      document.getElementById('loginBtn').textContent='دخول المسوؤل';
       toast('تم تسجيل الخروج');
     }
     return;
   }
-  const p=prompt('ادخل كلمة مرور الادمن:');
+  const p=prompt('ادخل كلمة مرور المسوؤل:');
   if(p===ADMIN_PASSWORD){
     sessionStorage.setItem('admin','true');
     document.getElementById('editBtn').style.display='inline-flex';
-    document.getElementById('loginBtn').textContent='خروج الادمن';
-    toast('تم الدخول كادمن بنجاح');
+    document.getElementById('loginBtn').textContent='خروج المسوؤل';
+    toast('تم الدخول كمسوؤل بنجاح');
   } else if(p!==null){ alert('كلمة المرور غير صحيحة'); }
 }
 
@@ -1038,7 +1038,7 @@ function buildInputGrid(containerId,key){
 }
 
 function openEditor(){
-  if(!isAdmin()){toast('يجب تسجيل الدخول كادمن اولا');return;}
+  if(!isAdmin()){toast('يجب تسجيل الدخول كمسوؤل اولا');return;}
   buildInputGrid('inp_trans','trans');
   buildInputGrid('inp_nontrans','nontrans');
   buildInputGrid('inp_trin','trin');
@@ -1123,7 +1123,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   loadHash();
   if(isAdmin()){
     document.getElementById('editBtn').style.display='inline-flex';
-    document.getElementById('loginBtn').textContent='خروج الادمن';
+    document.getElementById('loginBtn').textContent='خروج المسوؤل';
   }
   renderAll();
 });
