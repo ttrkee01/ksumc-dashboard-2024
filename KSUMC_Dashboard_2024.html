@@ -178,6 +178,11 @@ tr:hover td{background:var(--kb-lt)}
 <body>
 <div class="stripe"></div>
 
+  <select id="langSelect" class="abtn" onchange="setLang(this.value)">
+  <option value="ar">🇸🇦 العربية</option>
+  <option value="en">🇬🇧 English</option>
+</select>
+  
 <header class="header">
   <div class="hdr-top">
     <div class="hdr-logo">
@@ -1178,3 +1183,161 @@ window.addEventListener('DOMContentLoaded',()=>{
 </script>
 </body>
 </html>
+
+<script>
+/* ======================= FULL TRANSLATIONS ======================= */
+const translations = {
+  ar: {
+    // Header
+    hospital_name: "المدينة الطبية الجامعية",
+    hospital_sub: "جامعة الملك سعود · الرياض",
+    dashboard_title: "لوحة الأداء التشغيلي",
+    report_year: "التقرير السنوي",
+    share: "مشاركة",
+    admin_login: "دخول الأدمن",
+    edit_data: "تعديل البيانات",
+    export_csv: "تصدير CSV",
+    print: "طباعة",
+
+    // Navigation
+    overview: "نظرة عامة",
+    q1: "الربع الأول",
+    q2: "الربع الثاني",
+    q3: "الربع الثالث",
+    q4: "الربع الرابع",
+    compare: "التحليل المقارن",
+    full_data: "البيانات الكاملة",
+
+    // KPIs
+    kpi_total_cases: "إجمالي الحالات الحرجة",
+    kpi_transport: "إجمالي النقل الطبي",
+    kpi_training: "البرامج التدريبية",
+    kpi_participation: "إجمالي المشاركات",
+    months_12: "12 شهرًا",
+    internal_external: "داخلي + خارجي",
+
+    // Charts & Sections
+    monthly_performance: "الأداء الشهري — الحالات الحرجة",
+    quarter_distribution: "توزيع الأرباع",
+    annual_trend: "منحنى الاتجاه السنوي",
+    half_compare: "مقارنة النصفين",
+    annual_summary: "الملخص السنوي الشامل",
+
+    // Table headers
+    th_period: "الفترة",
+    th_cases: "حالات حرجة",
+    th_transport: "نقل طبي",
+    th_medivac: "ميدفاك",
+    th_training: "تدريب",
+    th_participation: "مشاركات",
+    th_percent: "% سنوي",
+
+    // Detail table
+    th_month: "الشهر",
+    th_quarter: "الربع",
+    th_internal: "نقل داخلي",
+    th_external: "نقل خارجي",
+
+    // Modals
+    edit_modal_title: "تعديل البيانات الشهرية",
+    edit_modal_desc: "عدّل الأرقام وستتحدث الرسوم والمؤشرات تلقائيًا",
+    apply: "تطبيق",
+    cancel: "إلغاء",
+
+    // Messages
+    updated_ok: "تم تحديث اللوحة بنجاح",
+    auth_wrong: "كلمة المرور غير صحيحة",
+    auth_ok: "تم الدخول كأدمن"
+  },
+
+  en: {
+    // Header
+    hospital_name: "University Medical City",
+    hospital_sub: "King Saud University · Riyadh",
+    dashboard_title: "Operational Performance Dashboard",
+    report_year: "Annual Report",
+    share: "Share",
+    admin_login: "Admin Login",
+    edit_data: "Edit Data",
+    export_csv: "Export CSV",
+    print: "Print",
+
+    // Navigation
+    overview: "Overview",
+    q1: "Q1",
+    q2: "Q2",
+    q3: "Q3",
+    q4: "Q4",
+    compare: "Comparative Analysis",
+    full_data: "Full Data",
+
+    // KPIs
+    kpi_total_cases: "Total Critical Cases",
+    kpi_transport: "Total Medical Transport",
+    kpi_training: "Training Programs",
+    kpi_participation: "Total Participation",
+    months_12: "12 Months",
+    internal_external: "Internal + External",
+
+    // Charts & Sections
+    monthly_performance: "Monthly Performance — Critical Cases",
+    quarter_distribution: "Quarter Distribution",
+    annual_trend: "Annual Trend",
+    half_compare: "H1 vs H2 Comparison",
+    annual_summary: "Annual Summary",
+
+    // Table headers
+    th_period: "Period",
+    th_cases: "Critical Cases",
+    th_transport: "Medical Transport",
+    th_medivac: "Medivac",
+    th_training: "Training",
+    th_participation: "Participation",
+    th_percent: "% Annual",
+
+    // Detail table
+    th_month: "Month",
+    th_quarter: "Quarter",
+    th_internal: "Internal Transport",
+    th_external: "External Transport",
+
+    // Modals
+    edit_modal_title: "Edit Monthly Data",
+    edit_modal_desc: "Adjust values to update all charts instantly",
+    apply: "Apply",
+    cancel: "Cancel",
+
+    // Messages
+    updated_ok: "Dashboard updated successfully",
+    auth_wrong: "Incorrect password",
+    auth_ok: "Logged in as admin"
+  }
+};
+
+/* ======================= LANGUAGE ENGINE ======================= */
+let currentLang = localStorage.getItem("lang") || "ar";
+
+function applyLang(lang){
+  currentLang = lang;
+  localStorage.setItem("lang", lang);
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir  = (lang === "ar") ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
+  });
+
+  const sel = document.getElementById("langSelect");
+  if (sel) sel.value = lang;
+}
+
+function setLang(lang){ applyLang(lang); }
+
+document.addEventListener("DOMContentLoaded", () => {
+  applyLang(currentLang);
+});
+</script>
