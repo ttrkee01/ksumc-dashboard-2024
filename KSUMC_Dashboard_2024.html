@@ -1181,12 +1181,10 @@ window.addEventListener('DOMContentLoaded',()=>{
 </script>
 </body>
 </html>
-
 <script>
 /* ======================= FULL TRANSLATIONS ======================= */
 const translations = {
   ar: {
-    // Header
     hospital_name: "المدينة الطبية الجامعية",
     hospital_sub: "جامعة الملك سعود · الرياض",
     dashboard_title: "لوحة الأداء التشغيلي",
@@ -1197,7 +1195,6 @@ const translations = {
     export_csv: "تصدير CSV",
     print: "طباعة",
 
-    // Navigation
     overview: "نظرة عامة",
     q1: "الربع الأول",
     q2: "الربع الثاني",
@@ -1206,7 +1203,6 @@ const translations = {
     compare: "التحليل المقارن",
     full_data: "البيانات الكاملة",
 
-    // KPIs
     kpi_total_cases: "إجمالي الحالات الحرجة",
     kpi_transport: "إجمالي النقل الطبي",
     kpi_training: "البرامج التدريبية",
@@ -1214,14 +1210,12 @@ const translations = {
     months_12: "12 شهرًا",
     internal_external: "داخلي + خارجي",
 
-    // Charts & Sections
     monthly_performance: "الأداء الشهري — الحالات الحرجة",
     quarter_distribution: "توزيع الأرباع",
     annual_trend: "منحنى الاتجاه السنوي",
     half_compare: "مقارنة النصفين",
     annual_summary: "الملخص السنوي الشامل",
 
-    // Table headers
     th_period: "الفترة",
     th_cases: "حالات حرجة",
     th_transport: "نقل طبي",
@@ -1230,26 +1224,22 @@ const translations = {
     th_participation: "مشاركات",
     th_percent: "% سنوي",
 
-    // Detail table
     th_month: "الشهر",
     th_quarter: "الربع",
     th_internal: "نقل داخلي",
     th_external: "نقل خارجي",
 
-    // Modals
     edit_modal_title: "تعديل البيانات الشهرية",
     edit_modal_desc: "عدّل الأرقام وستتحدث الرسوم والمؤشرات تلقائيًا",
     apply: "تطبيق",
     cancel: "إلغاء",
 
-    // Messages
     updated_ok: "تم تحديث اللوحة بنجاح",
     auth_wrong: "كلمة المرور غير صحيحة",
     auth_ok: "تم الدخول كأدمن"
   },
 
   en: {
-    // Header
     hospital_name: "University Medical City",
     hospital_sub: "King Saud University · Riyadh",
     dashboard_title: "Operational Performance Dashboard",
@@ -1260,7 +1250,6 @@ const translations = {
     export_csv: "Export CSV",
     print: "Print",
 
-    // Navigation
     overview: "Overview",
     q1: "Q1",
     q2: "Q2",
@@ -1269,7 +1258,6 @@ const translations = {
     compare: "Comparative Analysis",
     full_data: "Full Data",
 
-    // KPIs
     kpi_total_cases: "Total Critical Cases",
     kpi_transport: "Total Medical Transport",
     kpi_training: "Training Programs",
@@ -1277,14 +1265,12 @@ const translations = {
     months_12: "12 Months",
     internal_external: "Internal + External",
 
-    // Charts & Sections
     monthly_performance: "Monthly Performance — Critical Cases",
     quarter_distribution: "Quarter Distribution",
     annual_trend: "Annual Trend",
     half_compare: "H1 vs H2 Comparison",
     annual_summary: "Annual Summary",
 
-    // Table headers
     th_period: "Period",
     th_cases: "Critical Cases",
     th_transport: "Medical Transport",
@@ -1293,25 +1279,22 @@ const translations = {
     th_participation: "Participation",
     th_percent: "% Annual",
 
-    // Detail table
     th_month: "Month",
     th_quarter: "Quarter",
     th_internal: "Internal Transport",
     th_external: "External Transport",
 
-    // Modals
     edit_modal_title: "Edit Monthly Data",
     edit_modal_desc: "Adjust values to update all charts instantly",
     apply: "Apply",
     cancel: "Cancel",
 
-    // Messages
     updated_ok: "Dashboard updated successfully",
     auth_wrong: "Incorrect password",
     auth_ok: "Logged in as admin"
   }
 };
- <script>
+
 /* ======================= LANGUAGE ENGINE ======================= */
 let currentLang = localStorage.getItem("lang") || "ar";
 
