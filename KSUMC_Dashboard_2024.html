@@ -18,6 +18,8 @@
   --red:#ef4444;--red-lt:#fee2e2;
   --orange:#f97316;--orange-lt:#ffedd5;
   --purple:#8b5cf6;--purple-lt:#ede9fe;
+  --teal:#0d9488;--teal-lt:#ccfbf1;
+  --pink:#ec4899;--pink-lt:#fce7f3;
 }
 body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;min-height:100vh}
 .stripe{height:4px;background:linear-gradient(90deg,#005f8a,#0084BD,#3BAAD4,#E3E0D2)}
@@ -38,14 +40,14 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .nav{display:flex;gap:1px;padding-bottom:0;overflow-x:auto}
 .nb{padding:8px 13px;font-family:'Cairo',sans-serif;font-size:11.5px;font-weight:600;color:rgba(255,255,255,.65);background:transparent;border:none;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;transition:all .18s}
 .nb.active,.nb:hover{color:#fff;border-bottom-color:#fff}
-.main{max-width:1300px;margin:0 auto;padding:18px 16px}
+.main{max-width:1400px;margin:0 auto;padding:18px 16px}
 .page{display:none}.page.active{display:block}
 .ebanner{background:#fff;border:1.5px dashed var(--kb);border-radius:var(--r);padding:10px 15px;margin-bottom:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .ebanner .es{font-size:12px;color:var(--text2)}
-/* KPI Grid - 6 cards */
-.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px}
-@media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:650px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+/* KPI Grid - 7 cards */
+.kpi-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-bottom:16px}
+@media(max-width:1200px){.kpi-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:750px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:380px){.kpi-grid{grid-template-columns:1fr}}
 .kpi{background:var(--card);border-radius:var(--r);padding:13px 15px;box-shadow:var(--sh);border-top:4px solid var(--c,var(--kb));transition:transform .15s}
 .kpi:hover{transform:translateY(-2px)}
@@ -74,22 +76,21 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);direc
 .mtot{background:rgba(255,255,255,.2);border-radius:9px;padding:8px 16px;text-align:center;border:1.5px solid rgba(255,255,255,.3)}
 .mtot-n{font-size:28px;font-weight:800}
 .mtot-l{font-size:10px;opacity:.8}
-/* Metric Cards in Month Hero */
-.mmetrics{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
-@media(max-width:900px){.mmetrics{grid-template-columns:repeat(3,1fr)}}
+.mmetrics{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+@media(max-width:1000px){.mmetrics{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:500px){.mmetrics{grid-template-columns:repeat(2,1fr)}}
 .mmc{background:rgba(255,255,255,.15);border-radius:8px;padding:11px;text-align:center;border:1px solid rgba(255,255,255,.2)}
 .mmn{font-size:10px;font-weight:700;margin-bottom:4px;opacity:.9;line-height:1.3}
 .mmv{font-size:22px;font-weight:800}
 .pr-row{display:flex;align-items:center;gap:9px;margin-bottom:8px}
-.pr-lbl{font-size:11px;color:var(--text2);min-width:90px;text-align:right;font-weight:600}
+.pr-lbl{font-size:11px;color:var(--text2);min-width:100px;text-align:right;font-weight:600}
 .pr-tr{flex:1;background:var(--kg-lt);border-radius:4px;height:8px;overflow:hidden}
 .pr-fi{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
 .pr-val{font-size:11px;font-weight:700;min-width:34px;color:var(--kb)}
 .tw{overflow-x:auto;border-radius:8px;border:1px solid var(--border)}
-table{width:100%;border-collapse:collapse;font-size:11.5px}
-th{background:var(--kb);color:#fff;padding:8px 10px;text-align:center;font-weight:700;font-family:'Cairo',sans-serif;font-size:11px}
-td{padding:7px 10px;text-align:center;border-bottom:1px solid var(--border);font-family:'Cairo',sans-serif}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{background:var(--kb);color:#fff;padding:8px 8px;text-align:center;font-weight:700;font-family:'Cairo',sans-serif;font-size:10.5px}
+td{padding:7px 8px;text-align:center;border-bottom:1px solid var(--border);font-family:'Cairo',sans-serif}
 tr:last-child td{border-bottom:none}
 tr:nth-child(even) td{background:var(--kg-lt)}
 tr:hover td{background:var(--kb-lt)}
@@ -99,13 +100,18 @@ tr:hover td{background:var(--kb-lt)}
 .lsq{width:10px;height:10px;border-radius:2px;flex-shrink:0}
 .btnprim{background:var(--kb);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-family:'Cairo',sans-serif;font-size:12.5px;font-weight:700;cursor:pointer}
 .btnprim:hover{background:var(--kb-dk)}
+/* Evacuation highlight card */
+.evac-banner{background:linear-gradient(135deg,#0d9488,#0f766e);border-radius:var(--r);padding:14px 18px;margin-bottom:12px;color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.evac-title{font-size:14px;font-weight:800}
+.evac-sub{font-size:11px;opacity:.8;margin-top:2px}
+.evac-num{font-size:38px;font-weight:800;color:#fff}
+.evac-lbl{font-size:11px;opacity:.8}
 /* Modals */
 .modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;align-items:center;justify-content:center}
 .modal-ov.open{display:flex}
-.modal{background:#fff;border-radius:13px;padding:24px;width:min(860px,96vw);max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal{background:#fff;border-radius:13px;padding:24px;width:min(900px,96vw);max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
 .mt-h{font-size:15px;font-weight:800;color:var(--kb);margin-bottom:4px}
 .ms{font-size:11px;color:var(--text3);margin-bottom:14px}
-/* Editor sections */
 .ed-sec{margin-bottom:18px}
 .ed-sec-title{font-size:12.5px;font-weight:800;color:var(--kb);padding:7px 12px;background:var(--kb-lt);border-radius:7px;margin-bottom:10px;border-right:4px solid var(--kb)}
 .mgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:10px}
@@ -128,7 +134,6 @@ tr:hover td{background:var(--kb-lt)}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--kb);color:#fff;padding:9px 20px;border-radius:20px;font-family:'Cairo',sans-serif;font-size:12px;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none;z-index:2000}
 .toast.show{opacity:1}
 .footer{background:var(--kb);color:rgba(255,255,255,.72);text-align:center;padding:12px;font-size:11px;font-family:'Cairo',sans-serif}
-/* Summary stat boxes */
 .stat-boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
 @media(max-width:600px){.stat-boxes{grid-template-columns:1fr}}
 .sbox{border-radius:9px;padding:13px;text-align:center}
@@ -161,7 +166,7 @@ tr:hover td{background:var(--kb-lt)}
     <div class="hdr-acts">
       <button class="abtn" id="loginBtn" onclick="adminLogin()">
         <svg class="abtn-icon" viewBox="0 0 24 24"><path d="M12 2a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0 014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>
-        دخول الأدمن
+        دخول الادمن
       </button>
       <button class="abtn" id="editBtn" onclick="openEditor()" style="display:none">
         <svg class="abtn-icon" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
@@ -186,13 +191,13 @@ tr:hover td{background:var(--kb-lt)}
     <button class="nb" onclick="showPage('m0',this)">يناير</button>
     <button class="nb" onclick="showPage('m1',this)">فبراير</button>
     <button class="nb" onclick="showPage('m2',this)">مارس</button>
-    <button class="nb" onclick="showPage('m3',this)">أبريل</button>
+    <button class="nb" onclick="showPage('m3',this)">ابريل</button>
     <button class="nb" onclick="showPage('m4',this)">مايو</button>
     <button class="nb" onclick="showPage('m5',this)">يونيو</button>
     <button class="nb" onclick="showPage('m6',this)">يوليو</button>
-    <button class="nb" onclick="showPage('m7',this)">أغسطس</button>
+    <button class="nb" onclick="showPage('m7',this)">اغسطس</button>
     <button class="nb" onclick="showPage('m8',this)">سبتمبر</button>
-    <button class="nb" onclick="showPage('m9',this)">أكتوبر</button>
+    <button class="nb" onclick="showPage('m9',this)">اكتوبر</button>
     <button class="nb" onclick="showPage('m10',this)">نوفمبر</button>
     <button class="nb" onclick="showPage('m11',this)">ديسمبر</button>
     <button class="nb" onclick="showPage('cmp',this)">التحليل المقارن</button>
@@ -205,18 +210,18 @@ tr:hover td{background:var(--kb-lt)}
 <!-- ==================== OVERVIEW ==================== -->
 <div id="ov" class="page active">
   <div class="ebanner">
-    <span class="es">لوحة الأداء التشغيلي الشهري — المدينة الطبية الجامعية KSUMC 2026 — ادخل كأدمن لتعديل البيانات</span>
+    <span class="es">لوحة الاداء التشغيلي الشهري — المدينة الطبية الجامعية KSUMC 2026 — ادخل كادمن لتعديل البيانات</span>
   </div>
 
-  <!-- 6 KPI Cards -->
+  <!-- 7 KPI Cards -->
   <div class="kpi-grid">
     <div class="kpi" style="--c:#0084BD">
-      <div class="kpi-lbl">حالات حرجةمنقولة</div>
+      <div class="kpi-lbl">حالات حرجة منقولة</div>
       <div class="kpi-val" id="kv_trans">0</div>
       <div class="kpi-sub"><span class="kpi-tag">منقولة</span></div>
     </div>
     <div class="kpi" style="--c:#ef4444">
-      <div class="kpi-lbl">حالات حرجةغير منقولة</div>
+      <div class="kpi-lbl">حالات حرجة غير منقولة</div>
       <div class="kpi-val" id="kv_nontrans">0</div>
       <div class="kpi-sub"><span class="kpi-tag" style="background:#fee2e2;color:#ef4444">غير منقولة</span></div>
     </div>
@@ -231,15 +236,33 @@ tr:hover td{background:var(--kb-lt)}
       <div class="kpi-sub"><span class="kpi-tag" style="background:#ffedd5;color:#f97316">خارجي</span></div>
     </div>
     <div class="kpi" style="--c:#8b5cf6">
-      <div class="kpi-lbl">مشاركات داخلية</div>
+      <div class="kpi-lbl">مشاركات طبية داخلية</div>
       <div class="kpi-val" id="kv_partin">0</div>
       <div class="kpi-sub"><span class="kpi-tag" style="background:#ede9fe;color:#8b5cf6">داخلية</span></div>
     </div>
     <div class="kpi" style="--c:#748995">
-      <div class="kpi-lbl">مشاركات خارجية</div>
+      <div class="kpi-lbl">مشاركات طبية خارجية</div>
       <div class="kpi-val" id="kv_partout">0</div>
       <div class="kpi-sub"><span class="kpi-tag" style="background:#eaeef0;color:#748995">خارجية</span></div>
     </div>
+    <div class="kpi" style="--c:#0d9488">
+      <div class="kpi-lbl">حالات الاخلاء الطبي</div>
+      <div class="kpi-val" id="kv_evac">0</div>
+      <div class="kpi-sub"><span class="kpi-tag" style="background:#ccfbf1;color:#0d9488">اخلاء طبي</span></div>
+    </div>
+  </div>
+
+  <!-- Evacuation Banner -->
+  <div class="evac-banner">
+    <div>
+      <div class="evac-title">حالات الاخلاء الطبي — 2026</div>
+      <div class="evac-sub">اجمالي حالات الاخلاء الطبي الموثقة خلال العام</div>
+    </div>
+    <div style="text-align:center">
+      <div class="evac-num" id="evac_big">0</div>
+      <div class="evac-lbl">اجمالي الاخلاء</div>
+    </div>
+    <div class="cw" style="height:70px;width:300px;max-width:100%"><canvas id="evac_spark"></canvas></div>
   </div>
 
   <!-- Charts Row 1 -->
@@ -247,7 +270,7 @@ tr:hover td{background:var(--kb-lt)}
     <div class="card">
       <div class="ch">
         <div>
-          <div class="ct">الأداء الشهري — الحالات الحرجة المنقولة وغير المنقولة</div>
+          <div class="ct">الاداء الشهري — الحالات الحرجة المنقولة وغير المنقولة</div>
           <div class="cs">مقارنة شهرية لعام 2026</div>
         </div>
       </div>
@@ -283,6 +306,15 @@ tr:hover td{background:var(--kb-lt)}
     </div>
   </div>
 
+  <!-- Evacuation Chart -->
+  <div class="card">
+    <div class="ch"><div><div class="ct">حالات الاخلاء الطبي — المنحنى السنوي الشهري</div><div class="cs">توزيع حالات الاخلاء الطبي عبر اشهر 2026</div></div></div>
+    <div class="leg">
+      <span><span class="lsq" style="background:#0d9488"></span>حالات الاخلاء الطبي</span>
+    </div>
+    <div class="cw" style="height:190px"><canvas id="c5"></canvas></div>
+  </div>
+
   <!-- Summary Table -->
   <div class="card">
     <div class="ch"><div><div class="ct">الملخص السنوي الشامل — جميع المؤشرات</div></div></div>
@@ -293,13 +325,14 @@ tr:hover td{background:var(--kb-lt)}
             <th>الشهر</th>
             <th>حرجة منقولة</th>
             <th>حرجة غير منقولة</th>
-            <th>إجمالي حرجة</th>
+            <th>اجمالي حرجة</th>
             <th>نقل داخلي</th>
             <th>نقل خارجي</th>
-            <th>إجمالي نقل</th>
+            <th>اجمالي نقل</th>
             <th>مشاركة داخلية</th>
             <th>مشاركة خارجية</th>
-            <th>إجمالي مشاركات</th>
+            <th>اجمالي مشاركات</th>
+            <th style="background:#0f766e">اخلاء طبي</th>
           </tr>
         </thead>
         <tbody id="stb"></tbody>
@@ -308,7 +341,7 @@ tr:hover td{background:var(--kb-lt)}
   </div>
 </div>
 
-<!-- ==================== MONTH PAGES (generated by JS) ==================== -->
+<!-- ==================== MONTH PAGES ==================== -->
 <div id="m0" class="page"></div>
 <div id="m1" class="page"></div>
 <div id="m2" class="page"></div>
@@ -327,26 +360,36 @@ tr:hover td{background:var(--kb-lt)}
   <div class="sec"><span>التحليل المقارن والاتجاهات السنوية</span></div>
   <div class="g2b">
     <div class="card">
-      <div class="ct" style="margin-bottom:10px">مقارنة الحالات الحرجة شهرياً</div>
+      <div class="ct" style="margin-bottom:10px">مقارنة الحالات الحرجة شهريا</div>
       <div class="cw" style="height:220px"><canvas id="cc1"></canvas></div>
     </div>
     <div class="card">
-      <div class="ct" style="margin-bottom:10px">مقارنة النقل الطبي شهرياً</div>
+      <div class="ct" style="margin-bottom:10px">مقارنة النقل الطبي شهريا</div>
       <div class="cw" style="height:220px"><canvas id="cc2"></canvas></div>
     </div>
   </div>
-  <div class="card">
-    <div class="ct" style="margin-bottom:10px">منحنى المشاركات الطبية السنوي</div>
-    <div class="cw" style="height:210px"><canvas id="cc3"></canvas></div>
-  </div>
   <div class="g2b">
     <div class="card">
-      <div class="ct" style="margin-bottom:12px">ترتيب الأشهر — الحالات الحرجة الإجمالية</div>
+      <div class="ct" style="margin-bottom:10px">منحنى المشاركات الطبية السنوي</div>
+      <div class="cw" style="height:200px"><canvas id="cc3"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="ct" style="margin-bottom:10px">منحنى الاخلاء الطبي السنوي</div>
+      <div class="cw" style="height:200px"><canvas id="cc4"></canvas></div>
+    </div>
+  </div>
+  <div class="g3">
+    <div class="card">
+      <div class="ct" style="margin-bottom:12px">ترتيب الاشهر — الحالات الحرجة الاجمالية</div>
       <div id="rank_critical"></div>
     </div>
     <div class="card">
-      <div class="ct" style="margin-bottom:12px">ترتيب الأشهر — إجمالي النقل الطبي</div>
+      <div class="ct" style="margin-bottom:12px">ترتيب الاشهر — اجمالي النقل الطبي</div>
       <div id="rank_transport"></div>
+    </div>
+    <div class="card">
+      <div class="ct" style="margin-bottom:12px">ترتيب الاشهر — الاخلاء الطبي</div>
+      <div id="rank_evac"></div>
     </div>
   </div>
 </div>
@@ -355,15 +398,16 @@ tr:hover td{background:var(--kb-lt)}
 <div id="dtl" class="page">
   <div class="sec"><span>البيانات التفصيلية الكاملة</span></div>
   <div class="card" style="margin-bottom:12px">
-    <div class="ch"><div><div class="ct">جدول الأداء الشهري الكامل</div><div class="cs">جميع المؤشرات لكل شهر</div></div></div>
+    <div class="ch"><div><div class="ct">جدول الاداء الشهري الكامل</div><div class="cs">جميع المؤشرات لكل شهر</div></div></div>
     <div class="tw">
       <table>
         <thead>
           <tr>
             <th>#</th><th>الشهر</th>
-            <th>حرجة منقولة</th><th>حرجة غير منقولة</th><th>إجمالي حرجة</th>
-            <th>نقل داخلي</th><th>نقل خارجي</th><th>إجمالي نقل</th>
-            <th>مشاركة داخلية</th><th>مشاركة خارجية</th><th>إجمالي مشاركات</th>
+            <th>حرجة منقولة</th><th>حرجة غير منقولة</th><th>اجمالي حرجة</th>
+            <th>نقل داخلي</th><th>نقل خارجي</th><th>اجمالي نقل</th>
+            <th>مشاركة داخلية</th><th>مشاركة خارجية</th><th>اجمالي مشاركات</th>
+            <th style="background:#0f766e">اخلاء طبي</th>
           </tr>
         </thead>
         <tbody id="dtb"></tbody>
@@ -389,7 +433,7 @@ tr:hover td{background:var(--kb-lt)}
 <div class="modal-ov" id="emod">
   <div class="modal">
     <div class="mt-h">تعديل البيانات الشهرية</div>
-    <div class="ms">أدخل البيانات لكل شهر — ستتحدث جميع الرسوم والمؤشرات تلقائياً</div>
+    <div class="ms">ادخل البيانات لكل شهر — ستتحدث جميع الرسوم والمؤشرات تلقائيا</div>
 
     <div class="ed-sec">
       <div class="ed-sec-title">الحالات الحرجة المنقولة (12 شهر)</div>
@@ -415,9 +459,13 @@ tr:hover td{background:var(--kb-lt)}
       <div class="ed-sec-title" style="background:#eaeef0;border-color:#748995;color:#748995">المشاركات الطبية الخارجية (12 شهر)</div>
       <div class="mgrid" id="inp_partout"></div>
     </div>
+    <div class="ed-sec">
+      <div class="ed-sec-title" style="background:#ccfbf1;border-color:#0d9488;color:#0d9488">حالات الاخلاء الطبي (12 شهر)</div>
+      <div class="mgrid" id="inp_evac"></div>
+    </div>
 
     <div class="macts">
-      <button class="btncanc" onclick="closeEd()">إلغاء</button>
+      <button class="btncanc" onclick="closeEd()">الغاء</button>
       <button class="btnapply" onclick="applyData()">تطبيق وتحديث اللوحة</button>
     </div>
   </div>
@@ -427,7 +475,7 @@ tr:hover td{background:var(--kb-lt)}
 <div class="modal-ov" id="smod">
   <div class="smodal">
     <div class="mt-h">مشاركة لوحة التحكم</div>
-    <div class="ms">الرابط يحتوي على البيانات — شاركه مع زملائك وسيرون نفس الأرقام</div>
+    <div class="ms">الرابط يحتوي على البيانات — شاركه مع زملائك وسيرون نفس الارقام</div>
     <div class="surl">
       <input type="text" id="surl_inp" readonly>
       <button class="scpy" onclick="cpyURL()">نسخ</button>
@@ -444,12 +492,8 @@ tr:hover td{background:var(--kb-lt)}
 <div class="toast" id="toast">تم!</div>
 
 <script>
-// ==================== DATA SETUP ====================
-const MN = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
-const MN_EN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const QN = ['الربع الأول','الربع الثاني','الربع الثالث','الربع الرابع'];
-const QC = ['#0084BD','#005f8a','#3BAAD4','#748995'];
-
+const MN = ['يناير','فبراير','مارس','ابريل','مايو','يونيو','يوليو','اغسطس','سبتمبر','اكتوبر','نوفمبر','ديسمبر'];
+const QN = ['الربع الاول','الربع الثاني','الربع الثالث','الربع الرابع'];
 const MONTH_GRADIENTS = [
   'linear-gradient(135deg,#005f8a,#0084BD)',
   'linear-gradient(135deg,#006A9E,#0084BD)',
@@ -465,7 +509,6 @@ const MONTH_GRADIENTS = [
   'linear-gradient(135deg,#2c3e50,#4a5568)',
 ];
 
-// Default data (6 datasets × 12 months)
 let DATA = {
   trans:    [50,66,77,90,70,40,60,80,55,50,67,90],
   nontrans: [20,30,25,35,28,18,22,40,30,25,35,45],
@@ -473,87 +516,70 @@ let DATA = {
   trout:    [15,20,18,25,20,12,18,28,20,18,22,30],
   partin:   [10,15,12,18,14,8,12,20,14,12,16,22],
   partout:  [8,10,9,12,10,6,9,14,10,9,12,16],
+  evac:     [5,8,6,11,9,4,7,13,8,6,10,14],
 };
 
 const CHS = {};
 const ADMIN_PASSWORD = 'KSUMC2026';
+const ALL_KEYS = ['trans','nontrans','trin','trout','partin','partout','evac'];
 
-// ==================== ADMIN ====================
-function isAdmin(){ return sessionStorage.getItem('admin') === 'true'; }
+function isAdmin(){ return sessionStorage.getItem('admin')==='true'; }
 
 function adminLogin(){
   if(isAdmin()){
-    if(confirm('انت مسجل دخول كأدمن. هل تريد تسجيل الخروج؟')){
+    if(confirm('انت مسجل دخول كادمن. هل تريد تسجيل الخروج؟')){
       sessionStorage.removeItem('admin');
-      document.getElementById('editBtn').style.display = 'none';
-      document.getElementById('loginBtn').textContent = 'دخول الأدمن';
+      document.getElementById('editBtn').style.display='none';
+      document.getElementById('loginBtn').textContent='دخول الادمن';
       toast('تم تسجيل الخروج');
     }
     return;
   }
-  const p = prompt('أدخل كلمة مرور الأدمن:');
-  if(p === ADMIN_PASSWORD){
+  const p=prompt('ادخل كلمة مرور الادمن:');
+  if(p===ADMIN_PASSWORD){
     sessionStorage.setItem('admin','true');
-    document.getElementById('editBtn').style.display = 'inline-flex';
-    document.getElementById('loginBtn').textContent = 'خروج الأدمن';
-    toast('تم الدخول كأدمن بنجاح');
-  } else if(p !== null){
-    alert('كلمة المرور غير صحيحة');
-  }
+    document.getElementById('editBtn').style.display='inline-flex';
+    document.getElementById('loginBtn').textContent='خروج الادمن';
+    toast('تم الدخول كادمن بنجاح');
+  } else if(p!==null){ alert('كلمة المرور غير صحيحة'); }
 }
 
-// ==================== URL HASH ====================
 function saveHash(){
-  try{
-    history.replaceState(null,'','#'+btoa(JSON.stringify(DATA)));
-  } catch(e){}
+  try{ history.replaceState(null,'','#'+btoa(JSON.stringify(DATA))); } catch(e){}
 }
-
 function loadHash(){
   try{
-    const h = location.hash.slice(1);
+    const h=location.hash.slice(1);
     if(!h) return;
-    const d = JSON.parse(atob(h));
-    if(d && typeof d === 'object'){
-      ['trans','nontrans','trin','trout','partin','partout'].forEach(k=>{
-        if(Array.isArray(d[k]) && d[k].length === 12) DATA[k] = d[k];
-      });
+    const d=JSON.parse(atob(h));
+    if(d && typeof d==='object'){
+      ALL_KEYS.forEach(k=>{ if(Array.isArray(d[k])&&d[k].length===12) DATA[k]=d[k]; });
     }
   } catch(e){}
 }
 
-// ==================== CHART HELPERS ====================
-const BASE = {
-  responsive:true, maintainAspectRatio:false,
-  plugins:{ legend:{ display:false } },
+const BASE={
+  responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{display:false}},
   scales:{
-    x:{ grid:{ color:'rgba(0,0,0,.05)' }, ticks:{ font:{ family:'Cairo', size:10 }, color:'#748995' } },
-    y:{ grid:{ color:'rgba(0,0,0,.05)' }, ticks:{ font:{ family:'Cairo', size:10 }, color:'#748995' }, beginAtZero:true }
+    x:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:'Cairo',size:10},color:'#748995'}},
+    y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{family:'Cairo',size:10},color:'#748995'},beginAtZero:true}
   }
 };
-
-function dc(id){ if(CHS[id]){ CHS[id].destroy(); delete CHS[id]; } }
-function mk(id,cfg){ dc(id); const el = document.getElementById(id); if(!el) return; CHS[id] = new Chart(el, cfg); return CHS[id]; }
-
+function dc(id){ if(CHS[id]){CHS[id].destroy();delete CHS[id];} }
+function mk(id,cfg){ dc(id); const el=document.getElementById(id); if(!el) return; CHS[id]=new Chart(el,cfg); return CHS[id]; }
 function sum(arr){ return arr.reduce((a,b)=>a+b,0); }
 
-// ==================== RENDER ALL ====================
 function renderAll(){
-  const d = DATA;
-  const totTrans   = sum(d.trans);
-  const totNon     = sum(d.nontrans);
-  const totTrin    = sum(d.trin);
-  const totTrout   = sum(d.trout);
-  const totPartin  = sum(d.partin);
-  const totPartout = sum(d.partout);
-
-  // KPIs
-  document.getElementById('kv_trans').textContent    = totTrans.toLocaleString();
-  document.getElementById('kv_nontrans').textContent  = totNon.toLocaleString();
-  document.getElementById('kv_trin').textContent      = totTrin.toLocaleString();
-  document.getElementById('kv_trout').textContent     = totTrout.toLocaleString();
-  document.getElementById('kv_partin').textContent    = totPartin.toLocaleString();
-  document.getElementById('kv_partout').textContent   = totPartout.toLocaleString();
+  const d=DATA;
+  document.getElementById('kv_trans').textContent   = sum(d.trans).toLocaleString();
+  document.getElementById('kv_nontrans').textContent= sum(d.nontrans).toLocaleString();
+  document.getElementById('kv_trin').textContent    = sum(d.trin).toLocaleString();
+  document.getElementById('kv_trout').textContent   = sum(d.trout).toLocaleString();
+  document.getElementById('kv_partin').textContent  = sum(d.partin).toLocaleString();
+  document.getElementById('kv_partout').textContent = sum(d.partout).toLocaleString();
+  document.getElementById('kv_evac').textContent    = sum(d.evac).toLocaleString();
+  document.getElementById('evac_big').textContent   = sum(d.evac).toLocaleString();
 
   renderOverviewCharts(d);
   renderMonthPages(d);
@@ -563,106 +589,78 @@ function renderAll(){
   saveHash();
 }
 
-// ==================== OVERVIEW CHARTS ====================
 function renderOverviewCharts(d){
-  // C1 — Critical cases bar (grouped)
   mk('c1',{
     type:'bar',
-    data:{
-      labels: MN,
-      datasets:[
-        { label:'منقولة',    data:d.trans,    backgroundColor:'#0084BD', borderRadius:4 },
-        { label:'غير منقولة', data:d.nontrans, backgroundColor:'#ef4444', borderRadius:4 }
-      ]
-    },
-    options:{
-      ...BASE,
-      plugins:{ legend:{ display:false } },
-      scales:{
-        x:{ ...BASE.scales.x, ticks:{ ...BASE.scales.x.ticks, maxRotation:45 } },
-        y:{ ...BASE.scales.y }
-      }
-    }
+    data:{labels:MN,datasets:[
+      {label:'منقولة',data:d.trans,backgroundColor:'#0084BD',borderRadius:4},
+      {label:'غير منقولة',data:d.nontrans,backgroundColor:'#ef4444',borderRadius:4}
+    ]},
+    options:{...BASE,plugins:{legend:{display:false}},scales:{x:{...BASE.scales.x,ticks:{...BASE.scales.x.ticks,maxRotation:45}},y:{...BASE.scales.y}}}
   });
 
-  // C2 — Doughnut transport
-  const totTrin = sum(d.trin), totTrout = sum(d.trout);
+  const totTrin=sum(d.trin),totTrout=sum(d.trout);
   mk('c2',{
     type:'doughnut',
-    data:{
-      labels:['نقل داخلي','نقل خارجي'],
-      datasets:[{
-        data:[totTrin, totTrout],
-        backgroundColor:['#22c55e','#f97316'],
-        borderWidth:3, borderColor:'#fff', hoverOffset:6
-      }]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:false, cutout:'60%',
-      plugins:{
-        legend:{
-          display:true, position:'bottom',
-          labels:{ font:{ family:'Cairo', size:11 }, color:'#1a1a1a', boxWidth:12, padding:7 }
-        }
-      }
-    }
+    data:{labels:['نقل داخلي','نقل خارجي'],datasets:[{data:[totTrin,totTrout],backgroundColor:['#22c55e','#f97316'],borderWidth:3,borderColor:'#fff',hoverOffset:6}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:true,position:'bottom',labels:{font:{family:'Cairo',size:11},color:'#1a1a1a',boxWidth:12,padding:7}}}}
   });
 
-  // C3 — Transport monthly grouped
   mk('c3',{
     type:'bar',
-    data:{
-      labels: MN,
-      datasets:[
-        { label:'داخلي',  data:d.trin,  backgroundColor:'#22c55e', borderRadius:4 },
-        { label:'خارجي',  data:d.trout, backgroundColor:'#f97316', borderRadius:4 }
-      ]
-    },
-    options:{
-      ...BASE,
-      plugins:{ legend:{ display:false } },
-      scales:{
-        x:{ ...BASE.scales.x, ticks:{ ...BASE.scales.x.ticks, maxRotation:45 } },
-        y:{ ...BASE.scales.y }
-      }
-    }
+    data:{labels:MN,datasets:[
+      {label:'داخلي',data:d.trin,backgroundColor:'#22c55e',borderRadius:4},
+      {label:'خارجي',data:d.trout,backgroundColor:'#f97316',borderRadius:4}
+    ]},
+    options:{...BASE,plugins:{legend:{display:false}},scales:{x:{...BASE.scales.x,ticks:{...BASE.scales.x.ticks,maxRotation:45}},y:{...BASE.scales.y}}}
   });
 
-  // C4 — Participation monthly grouped
   mk('c4',{
     type:'bar',
-    data:{
-      labels: MN,
-      datasets:[
-        { label:'داخلية', data:d.partin,  backgroundColor:'#8b5cf6', borderRadius:4 },
-        { label:'خارجية', data:d.partout, backgroundColor:'#748995',  borderRadius:4 }
-      ]
-    },
+    data:{labels:MN,datasets:[
+      {label:'داخلية',data:d.partin,backgroundColor:'#8b5cf6',borderRadius:4},
+      {label:'خارجية',data:d.partout,backgroundColor:'#748995',borderRadius:4}
+    ]},
+    options:{...BASE,plugins:{legend:{display:false}},scales:{x:{...BASE.scales.x,ticks:{...BASE.scales.x.ticks,maxRotation:45}},y:{...BASE.scales.y}}}
+  });
+
+  mk('c5',{
+    type:'line',
+    data:{labels:MN,datasets:[{
+      label:'اخلاء طبي',data:d.evac,
+      borderColor:'#0d9488',backgroundColor:'rgba(13,148,136,.12)',
+      tension:.4,fill:true,pointRadius:5,pointBackgroundColor:'#fff',
+      pointBorderColor:'#0d9488',pointBorderWidth:2.5,borderWidth:3
+    }]},
+    options:{...BASE,plugins:{legend:{display:false}},scales:{x:{...BASE.scales.x,ticks:{...BASE.scales.x.ticks,maxRotation:45}},y:{...BASE.scales.y}}}
+  });
+
+  // Sparkline for evac banner
+  mk('evac_spark',{
+    type:'bar',
+    data:{labels:MN,datasets:[{data:d.evac,backgroundColor:'rgba(255,255,255,0.5)',borderRadius:3,borderSkipped:false}]},
     options:{
-      ...BASE,
-      plugins:{ legend:{ display:false } },
-      scales:{
-        x:{ ...BASE.scales.x, ticks:{ ...BASE.scales.x.ticks, maxRotation:45 } },
-        y:{ ...BASE.scales.y }
-      }
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{enabled:false}},
+      scales:{x:{display:false},y:{display:false,beginAtZero:true}}
     }
   });
 }
 
-// ==================== SUMMARY TABLE ====================
 function renderSummaryTable(d){
-  const sb = document.getElementById('stb');
+  const sb=document.getElementById('stb');
   if(!sb) return;
-  let html = '';
-  let totals = { trans:0,nontrans:0,crit:0,trin:0,trout:0,tr:0,partin:0,partout:0,part:0 };
+  let html='';
+  let tot={trans:0,nontrans:0,crit:0,trin:0,trout:0,tr:0,partin:0,partout:0,part:0,evac:0};
   for(let i=0;i<12;i++){
-    const crit = d.trans[i]+d.nontrans[i];
-    const tr   = d.trin[i]+d.trout[i];
-    const part = d.partin[i]+d.partout[i];
-    totals.trans+=d.trans[i]; totals.nontrans+=d.nontrans[i]; totals.crit+=crit;
-    totals.trin+=d.trin[i];   totals.trout+=d.trout[i];       totals.tr+=tr;
-    totals.partin+=d.partin[i]; totals.partout+=d.partout[i]; totals.part+=part;
-    html += `<tr>
+    const crit=d.trans[i]+d.nontrans[i];
+    const tr=d.trin[i]+d.trout[i];
+    const part=d.partin[i]+d.partout[i];
+    tot.trans+=d.trans[i];tot.nontrans+=d.nontrans[i];tot.crit+=crit;
+    tot.trin+=d.trin[i];tot.trout+=d.trout[i];tot.tr+=tr;
+    tot.partin+=d.partin[i];tot.partout+=d.partout[i];tot.part+=part;
+    tot.evac+=d.evac[i];
+    html+=`<tr>
       <td><b>${MN[i]}</b></td>
       <td style="color:#0084BD;font-weight:700">${d.trans[i]}</td>
       <td style="color:#ef4444;font-weight:700">${d.nontrans[i]}</td>
@@ -673,33 +671,34 @@ function renderSummaryTable(d){
       <td style="color:#8b5cf6;font-weight:700">${d.partin[i]}</td>
       <td style="color:#748995;font-weight:700">${d.partout[i]}</td>
       <td><b>${part}</b></td>
+      <td style="color:#0d9488;font-weight:800;background:#f0fdfa">${d.evac[i]}</td>
     </tr>`;
   }
-  html += `<tr style="background:#0084BD">
-    <td style="color:#fff;font-weight:800">الإجمالي</td>
-    <td style="color:#fff;font-weight:800">${totals.trans}</td>
-    <td style="color:#fff;font-weight:800">${totals.nontrans}</td>
-    <td style="color:#fff;font-weight:800">${totals.crit}</td>
-    <td style="color:#fff;font-weight:800">${totals.trin}</td>
-    <td style="color:#fff;font-weight:800">${totals.trout}</td>
-    <td style="color:#fff;font-weight:800">${totals.tr}</td>
-    <td style="color:#fff;font-weight:800">${totals.partin}</td>
-    <td style="color:#fff;font-weight:800">${totals.partout}</td>
-    <td style="color:#fff;font-weight:800">${totals.part}</td>
+  html+=`<tr style="background:#0084BD">
+    <td style="color:#fff;font-weight:800">الاجمالي</td>
+    <td style="color:#fff;font-weight:800">${tot.trans}</td>
+    <td style="color:#fff;font-weight:800">${tot.nontrans}</td>
+    <td style="color:#fff;font-weight:800">${tot.crit}</td>
+    <td style="color:#fff;font-weight:800">${tot.trin}</td>
+    <td style="color:#fff;font-weight:800">${tot.trout}</td>
+    <td style="color:#fff;font-weight:800">${tot.tr}</td>
+    <td style="color:#fff;font-weight:800">${tot.partin}</td>
+    <td style="color:#fff;font-weight:800">${tot.partout}</td>
+    <td style="color:#fff;font-weight:800">${tot.part}</td>
+    <td style="color:#fff;font-weight:800;background:#0f766e">${tot.evac}</td>
   </tr>`;
-  sb.innerHTML = html;
+  sb.innerHTML=html;
 }
 
-// ==================== DETAIL TABLE ====================
 function renderDetailTable(d){
-  const db = document.getElementById('dtb');
+  const db=document.getElementById('dtb');
   if(!db) return;
-  let html = '';
+  let html='';
   for(let i=0;i<12;i++){
-    const crit = d.trans[i]+d.nontrans[i];
-    const tr   = d.trin[i]+d.trout[i];
-    const part = d.partin[i]+d.partout[i];
-    html += `<tr>
+    const crit=d.trans[i]+d.nontrans[i];
+    const tr=d.trin[i]+d.trout[i];
+    const part=d.partin[i]+d.partout[i];
+    html+=`<tr>
       <td>${i+1}</td>
       <td><b>${MN[i]}</b></td>
       <td style="color:#0084BD;font-weight:700">${d.trans[i]}</td>
@@ -711,24 +710,24 @@ function renderDetailTable(d){
       <td style="color:#8b5cf6;font-weight:700">${d.partin[i]}</td>
       <td style="color:#748995;font-weight:700">${d.partout[i]}</td>
       <td><b>${part}</b></td>
+      <td style="color:#0d9488;font-weight:800;background:#f0fdfa">${d.evac[i]}</td>
     </tr>`;
   }
-  db.innerHTML = html;
+  db.innerHTML=html;
 }
 
-// ==================== MONTH PAGES ====================
 function renderMonthPages(d){
   for(let i=0;i<12;i++){
-    const container = document.getElementById('m'+i);
+    const container=document.getElementById('m'+i);
     if(!container) continue;
-    const crit  = d.trans[i] + d.nontrans[i];
-    const tr    = d.trin[i]  + d.trout[i];
-    const part  = d.partin[i]+ d.partout[i];
-    const qIdx  = Math.floor(i/3);
-    const qName = QN[qIdx];
-    const grad  = MONTH_GRADIENTS[i];
+    const crit=d.trans[i]+d.nontrans[i];
+    const tr=d.trin[i]+d.trout[i];
+    const part=d.partin[i]+d.partout[i];
+    const qName=QN[Math.floor(i/3)];
+    const grad=MONTH_GRADIENTS[i];
+    const allMax=Math.max(d.trans[i],d.nontrans[i],d.trin[i],d.trout[i],d.partin[i],d.partout[i],d.evac[i])||1;
 
-    container.innerHTML = `
+    container.innerHTML=`
       <div class="mhero" style="background:${grad}">
         <div class="mht">
           <div>
@@ -737,49 +736,40 @@ function renderMonthPages(d){
           </div>
           <div class="mtot">
             <div class="mtot-n">${crit}</div>
-            <div class="mtot-l">إجمالي الحالات الحرجة</div>
+            <div class="mtot-l">اجمالي الحالات الحرجة</div>
           </div>
         </div>
         <div class="mmetrics">
-          <div class="mmc">
-            <div class="mmn">حرجة منقولة</div>
-            <div class="mmv">${d.trans[i]}</div>
-          </div>
-          <div class="mmc">
-            <div class="mmn">حرجة غير منقولة</div>
-            <div class="mmv">${d.nontrans[i]}</div>
-          </div>
-          <div class="mmc">
-            <div class="mmn">نقل داخلي</div>
-            <div class="mmv">${d.trin[i]}</div>
-          </div>
-          <div class="mmc">
-            <div class="mmn">نقل خارجي</div>
-            <div class="mmv">${d.trout[i]}</div>
-          </div>
-          <div class="mmc">
-            <div class="mmn">مشاركة داخلية</div>
-            <div class="mmv">${d.partin[i]}</div>
-          </div>
-          <div class="mmc">
-            <div class="mmn">مشاركة خارجية</div>
-            <div class="mmv">${d.partout[i]}</div>
+          <div class="mmc"><div class="mmn">حرجة منقولة</div><div class="mmv">${d.trans[i]}</div></div>
+          <div class="mmc"><div class="mmn">حرجة غير منقولة</div><div class="mmv">${d.nontrans[i]}</div></div>
+          <div class="mmc"><div class="mmn">نقل داخلي</div><div class="mmv">${d.trin[i]}</div></div>
+          <div class="mmc"><div class="mmn">نقل خارجي</div><div class="mmv">${d.trout[i]}</div></div>
+          <div class="mmc"><div class="mmn">مشاركة داخلية</div><div class="mmv">${d.partin[i]}</div></div>
+          <div class="mmc"><div class="mmn">مشاركة خارجية</div><div class="mmv">${d.partout[i]}</div></div>
+          <div class="mmc" style="border:1.5px solid rgba(255,255,255,0.5);background:rgba(255,255,255,0.25)">
+            <div class="mmn">اخلاء طبي</div>
+            <div class="mmv">${d.evac[i]}</div>
           </div>
         </div>
       </div>
 
-      <div class="g3">
+      <div class="g4">
         <div class="card">
           <div class="ct" style="margin-bottom:10px">الحالات الحرجة</div>
-          <div class="cw" style="height:160px"><canvas id="mc_crit_${i}"></canvas></div>
+          <div class="cw" style="height:150px"><canvas id="mc_crit_${i}"></canvas></div>
         </div>
         <div class="card">
           <div class="ct" style="margin-bottom:10px">النقل الطبي</div>
-          <div class="cw" style="height:160px"><canvas id="mc_tr_${i}"></canvas></div>
+          <div class="cw" style="height:150px"><canvas id="mc_tr_${i}"></canvas></div>
         </div>
         <div class="card">
           <div class="ct" style="margin-bottom:10px">المشاركات الطبية</div>
-          <div class="cw" style="height:160px"><canvas id="mc_part_${i}"></canvas></div>
+          <div class="cw" style="height:150px"><canvas id="mc_part_${i}"></canvas></div>
+        </div>
+        <div class="card" style="border-top:3px solid #0d9488">
+          <div class="ct" style="margin-bottom:6px;color:#0d9488">الاخلاء الطبي</div>
+          <div style="text-align:center;font-size:42px;font-weight:800;color:#0d9488;line-height:1.1">${d.evac[i]}</div>
+          <div style="text-align:center;font-size:11px;color:#748995;margin-top:4px">حالة اخلاء</div>
         </div>
       </div>
 
@@ -787,153 +777,125 @@ function renderMonthPages(d){
         <div class="ct" style="margin-bottom:13px">توزيع المؤشرات — ${MN[i]}</div>
         <div class="pr-row">
           <div class="pr-lbl">منقولة</div>
-          <div class="pr-tr"><div class="pr-fi" style="background:#0084BD;width:${crit>0?Math.round(d.trans[i]/crit*100):0}%"></div></div>
+          <div class="pr-tr"><div class="pr-fi" style="background:#0084BD;width:${Math.round(d.trans[i]/allMax*100)}%"></div></div>
           <div class="pr-val" style="color:#0084BD">${d.trans[i]}</div>
         </div>
         <div class="pr-row">
           <div class="pr-lbl">غير منقولة</div>
-          <div class="pr-tr"><div class="pr-fi" style="background:#ef4444;width:${crit>0?Math.round(d.nontrans[i]/crit*100):0}%"></div></div>
+          <div class="pr-tr"><div class="pr-fi" style="background:#ef4444;width:${Math.round(d.nontrans[i]/allMax*100)}%"></div></div>
           <div class="pr-val" style="color:#ef4444">${d.nontrans[i]}</div>
         </div>
         <div class="pr-row">
           <div class="pr-lbl">نقل داخلي</div>
-          <div class="pr-tr"><div class="pr-fi" style="background:#22c55e;width:${tr>0?Math.round(d.trin[i]/tr*100):0}%"></div></div>
+          <div class="pr-tr"><div class="pr-fi" style="background:#22c55e;width:${Math.round(d.trin[i]/allMax*100)}%"></div></div>
           <div class="pr-val" style="color:#22c55e">${d.trin[i]}</div>
         </div>
         <div class="pr-row">
           <div class="pr-lbl">نقل خارجي</div>
-          <div class="pr-tr"><div class="pr-fi" style="background:#f97316;width:${tr>0?Math.round(d.trout[i]/tr*100):0}%"></div></div>
+          <div class="pr-tr"><div class="pr-fi" style="background:#f97316;width:${Math.round(d.trout[i]/allMax*100)}%"></div></div>
           <div class="pr-val" style="color:#f97316">${d.trout[i]}</div>
         </div>
         <div class="pr-row">
           <div class="pr-lbl">مشاركة داخلية</div>
-          <div class="pr-tr"><div class="pr-fi" style="background:#8b5cf6;width:${part>0?Math.round(d.partin[i]/part*100):0}%"></div></div>
+          <div class="pr-tr"><div class="pr-fi" style="background:#8b5cf6;width:${Math.round(d.partin[i]/allMax*100)}%"></div></div>
           <div class="pr-val" style="color:#8b5cf6">${d.partin[i]}</div>
         </div>
         <div class="pr-row">
           <div class="pr-lbl">مشاركة خارجية</div>
-          <div class="pr-tr"><div class="pr-fi" style="background:#748995;width:${part>0?Math.round(d.partout[i]/part*100):0}%"></div></div>
+          <div class="pr-tr"><div class="pr-fi" style="background:#748995;width:${Math.round(d.partout[i]/allMax*100)}%"></div></div>
           <div class="pr-val" style="color:#748995">${d.partout[i]}</div>
+        </div>
+        <div class="pr-row">
+          <div class="pr-lbl">اخلاء طبي</div>
+          <div class="pr-tr"><div class="pr-fi" style="background:#0d9488;width:${Math.round(d.evac[i]/allMax*100)}%"></div></div>
+          <div class="pr-val" style="color:#0d9488">${d.evac[i]}</div>
         </div>
       </div>
     `;
 
-    // Render mini doughnut charts
     setTimeout(()=>{
       mk('mc_crit_'+i,{
         type:'doughnut',
-        data:{
-          labels:['منقولة','غير منقولة'],
-          datasets:[{ data:[d.trans[i],d.nontrans[i]], backgroundColor:['#0084BD','#ef4444'], borderWidth:2, borderColor:'#fff', hoverOffset:4 }]
-        },
-        options:{
-          responsive:true, maintainAspectRatio:false, cutout:'55%',
-          plugins:{ legend:{ display:true, position:'bottom', labels:{ font:{ family:'Cairo', size:10 }, boxWidth:10, padding:5 } } }
-        }
+        data:{labels:['منقولة','غير منقولة'],datasets:[{data:[d.trans[i],d.nontrans[i]],backgroundColor:['#0084BD','#ef4444'],borderWidth:2,borderColor:'#fff',hoverOffset:4}]},
+        options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{display:true,position:'bottom',labels:{font:{family:'Cairo',size:10},boxWidth:10,padding:5}}}}
       });
       mk('mc_tr_'+i,{
         type:'doughnut',
-        data:{
-          labels:['داخلي','خارجي'],
-          datasets:[{ data:[d.trin[i],d.trout[i]], backgroundColor:['#22c55e','#f97316'], borderWidth:2, borderColor:'#fff', hoverOffset:4 }]
-        },
-        options:{
-          responsive:true, maintainAspectRatio:false, cutout:'55%',
-          plugins:{ legend:{ display:true, position:'bottom', labels:{ font:{ family:'Cairo', size:10 }, boxWidth:10, padding:5 } } }
-        }
+        data:{labels:['داخلي','خارجي'],datasets:[{data:[d.trin[i],d.trout[i]],backgroundColor:['#22c55e','#f97316'],borderWidth:2,borderColor:'#fff',hoverOffset:4}]},
+        options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{display:true,position:'bottom',labels:{font:{family:'Cairo',size:10},boxWidth:10,padding:5}}}}
       });
       mk('mc_part_'+i,{
         type:'doughnut',
-        data:{
-          labels:['داخلية','خارجية'],
-          datasets:[{ data:[d.partin[i],d.partout[i]], backgroundColor:['#8b5cf6','#748995'], borderWidth:2, borderColor:'#fff', hoverOffset:4 }]
-        },
-        options:{
-          responsive:true, maintainAspectRatio:false, cutout:'55%',
-          plugins:{ legend:{ display:true, position:'bottom', labels:{ font:{ family:'Cairo', size:10 }, boxWidth:10, padding:5 } } }
-        }
+        data:{labels:['داخلية','خارجية'],datasets:[{data:[d.partin[i],d.partout[i]],backgroundColor:['#8b5cf6','#748995'],borderWidth:2,borderColor:'#fff',hoverOffset:4}]},
+        options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{display:true,position:'bottom',labels:{font:{family:'Cairo',size:10},boxWidth:10,padding:5}}}}
       });
-    }, 50);
+    },50);
   }
 }
 
-// ==================== COMPARE CHARTS ====================
 function renderCompare(d){
-  const critArr  = d.trans.map((v,i)=>v+d.nontrans[i]);
-  const trArr    = d.trin.map((v,i)=>v+d.trout[i]);
-  const partArr  = d.partin.map((v,i)=>v+d.partout[i]);
-
-  // CC1
   mk('cc1',{
     type:'bar',
-    data:{
-      labels:MN,
-      datasets:[
-        { label:'منقولة',    data:d.trans,    backgroundColor:'#0084BD', borderRadius:4 },
-        { label:'غير منقولة', data:d.nontrans, backgroundColor:'#ef4444', borderRadius:4 }
-      ]
-    },
-    options:{
-      ...BASE, plugins:{ legend:{ display:true, labels:{ font:{ family:'Cairo', size:10 }, boxWidth:10, padding:6 } } },
-      scales:{ x:{ ...BASE.scales.x, ticks:{ ...BASE.scales.x.ticks, maxRotation:45 } }, y:{ ...BASE.scales.y } }
-    }
+    data:{labels:MN,datasets:[
+      {label:'منقولة',data:d.trans,backgroundColor:'#0084BD',borderRadius:4},
+      {label:'غير منقولة',data:d.nontrans,backgroundColor:'#ef4444',borderRadius:4}
+    ]},
+    options:{...BASE,plugins:{legend:{display:true,labels:{font:{family:'Cairo',size:10},boxWidth:10,padding:6}}},
+      scales:{x:{...BASE.scales.x,ticks:{...BASE.scales.x.ticks,maxRotation:45}},y:{...BASE.scales.y}}}
   });
-
-  // CC2
   mk('cc2',{
     type:'bar',
-    data:{
-      labels:MN,
-      datasets:[
-        { label:'نقل داخلي',  data:d.trin,  backgroundColor:'#22c55e', borderRadius:4 },
-        { label:'نقل خارجي',  data:d.trout, backgroundColor:'#f97316', borderRadius:4 }
-      ]
-    },
-    options:{
-      ...BASE, plugins:{ legend:{ display:true, labels:{ font:{ family:'Cairo', size:10 }, boxWidth:10, padding:6 } } },
-      scales:{ x:{ ...BASE.scales.x, ticks:{ ...BASE.scales.x.ticks, maxRotation:45 } }, y:{ ...BASE.scales.y } }
-    }
+    data:{labels:MN,datasets:[
+      {label:'نقل داخلي',data:d.trin,backgroundColor:'#22c55e',borderRadius:4},
+      {label:'نقل خارجي',data:d.trout,backgroundColor:'#f97316',borderRadius:4}
+    ]},
+    options:{...BASE,plugins:{legend:{display:true,labels:{font:{family:'Cairo',size:10},boxWidth:10,padding:6}}},
+      scales:{x:{...BASE.scales.x,ticks:{...BASE.scales.x.ticks,maxRotation:45}},y:{...BASE.scales.y}}}
   });
-
-  // CC3 — Line: participations
   mk('cc3',{
     type:'line',
-    data:{
-      labels:MN,
-      datasets:[
-        { label:'داخلية',  data:d.partin,  borderColor:'#8b5cf6', backgroundColor:'rgba(139,92,246,.1)', tension:.4, fill:true, pointRadius:4, pointBackgroundColor:'#fff', pointBorderColor:'#8b5cf6', pointBorderWidth:2, borderWidth:2.5 },
-        { label:'خارجية',  data:d.partout, borderColor:'#748995', backgroundColor:'rgba(116,137,149,.08)', tension:.4, fill:true, pointRadius:4, pointBackgroundColor:'#fff', pointBorderColor:'#748995', pointBorderWidth:2, borderWidth:2 }
-      ]
-    },
-    options:{
-      ...BASE, plugins:{ legend:{ display:true, labels:{ font:{ family:'Cairo', size:11 }, color:'#748995', boxWidth:10, padding:9 } } }
-    }
+    data:{labels:MN,datasets:[
+      {label:'داخلية',data:d.partin,borderColor:'#8b5cf6',backgroundColor:'rgba(139,92,246,.1)',tension:.4,fill:true,pointRadius:4,pointBackgroundColor:'#fff',pointBorderColor:'#8b5cf6',pointBorderWidth:2,borderWidth:2.5},
+      {label:'خارجية',data:d.partout,borderColor:'#748995',backgroundColor:'rgba(116,137,149,.08)',tension:.4,fill:true,pointRadius:4,pointBackgroundColor:'#fff',pointBorderColor:'#748995',pointBorderWidth:2,borderWidth:2}
+    ]},
+    options:{...BASE,plugins:{legend:{display:true,labels:{font:{family:'Cairo',size:11},color:'#748995',boxWidth:10,padding:9}}}}
+  });
+  mk('cc4',{
+    type:'line',
+    data:{labels:MN,datasets:[{
+      label:'اخلاء طبي',data:d.evac,
+      borderColor:'#0d9488',backgroundColor:'rgba(13,148,136,.15)',
+      tension:.4,fill:true,pointRadius:5,pointBackgroundColor:'#fff',
+      pointBorderColor:'#0d9488',pointBorderWidth:2.5,borderWidth:3
+    }]},
+    options:{...BASE,plugins:{legend:{display:true,labels:{font:{family:'Cairo',size:11},color:'#0d9488',boxWidth:10,padding:9}}}}
   });
 
-  // Rankings
-  renderRank('rank_critical', critArr,  MN, '#0084BD');
-  renderRank('rank_transport', trArr,   MN, '#22c55e');
+  const critArr=d.trans.map((v,i)=>v+d.nontrans[i]);
+  const trArr=d.trin.map((v,i)=>v+d.trout[i]);
+  renderRank('rank_critical',critArr,MN,'#0084BD');
+  renderRank('rank_transport',trArr,MN,'#22c55e');
+  renderRank('rank_evac',d.evac,MN,'#0d9488');
 }
 
-function renderRank(containerId, arr, labels, color){
-  const container = document.getElementById(containerId);
+function renderRank(containerId,arr,labels,color){
+  const container=document.getElementById(containerId);
   if(!container) return;
-  const max = Math.max(...arr);
-  const indexed = arr.map((v,i)=>({v,i})).sort((a,b)=>b.v-a.v);
-  container.innerHTML = indexed.map(({v,i})=>`
+  const max=Math.max(...arr)||1;
+  const indexed=arr.map((v,i)=>({v,i})).sort((a,b)=>b.v-a.v);
+  container.innerHTML=indexed.map(({v,i})=>`
     <div class="pr-row">
       <div class="pr-lbl">${labels[i]}</div>
-      <div class="pr-tr"><div class="pr-fi" style="background:${color};width:${max>0?Math.round(v/max*100):0}%"></div></div>
+      <div class="pr-tr"><div class="pr-fi" style="background:${color};width:${Math.round(v/max*100)}%"></div></div>
       <div class="pr-val" style="color:${color}">${v}</div>
     </div>
   `).join('');
 }
 
-// ==================== EDITOR ====================
-function buildInputGrid(containerId, key, label){
-  const el = document.getElementById(containerId);
+function buildInputGrid(containerId,key){
+  const el=document.getElementById(containerId);
   if(!el) return;
-  el.innerHTML = MN.map((m,i)=>`
+  el.innerHTML=MN.map((m,i)=>`
     <div class="mf">
       <label>${m}</label>
       <input type="number" id="inp_${key}_${i}" value="${DATA[key][i]}" min="0" max="9999">
@@ -942,23 +904,23 @@ function buildInputGrid(containerId, key, label){
 }
 
 function openEditor(){
-  if(!isAdmin()){ toast('يجب تسجيل الدخول كأدمن أولاً'); return; }
-  buildInputGrid('inp_trans',    'trans',    'منقولة');
-  buildInputGrid('inp_nontrans', 'nontrans', 'غير منقولة');
-  buildInputGrid('inp_trin',     'trin',     'نقل داخلي');
-  buildInputGrid('inp_trout',    'trout',    'نقل خارجي');
-  buildInputGrid('inp_partin',   'partin',   'مشاركة داخلية');
-  buildInputGrid('inp_partout',  'partout',  'مشاركة خارجية');
+  if(!isAdmin()){toast('يجب تسجيل الدخول كادمن اولا');return;}
+  buildInputGrid('inp_trans','trans');
+  buildInputGrid('inp_nontrans','nontrans');
+  buildInputGrid('inp_trin','trin');
+  buildInputGrid('inp_trout','trout');
+  buildInputGrid('inp_partin','partin');
+  buildInputGrid('inp_partout','partout');
+  buildInputGrid('inp_evac','evac');
   document.getElementById('emod').classList.add('open');
 }
-
 function closeEd(){ document.getElementById('emod').classList.remove('open'); }
 
 function applyData(){
-  ['trans','nontrans','trin','trout','partin','partout'].forEach(key=>{
-    DATA[key] = DATA[key].map((_,i)=>{
-      const el = document.getElementById('inp_'+key+'_'+i);
-      return el ? Math.max(0, Math.min(9999, parseInt(el.value)||0)) : DATA[key][i];
+  ALL_KEYS.forEach(key=>{
+    DATA[key]=DATA[key].map((_,i)=>{
+      const el=document.getElementById('inp_'+key+'_'+i);
+      return el?Math.max(0,Math.min(9999,parseInt(el.value)||0)):DATA[key][i];
     });
   });
   closeEd();
@@ -966,69 +928,66 @@ function applyData(){
   toast('تم تحديث اللوحة بنجاح');
 }
 
-// ==================== SHARE ====================
 function openShare(){
-  document.getElementById('surl_inp').value = location.href;
+  document.getElementById('surl_inp').value=location.href;
   document.getElementById('smod').classList.add('open');
 }
 function closeShare(){ document.getElementById('smod').classList.remove('open'); }
 function cpyURL(){
-  const el = document.getElementById('surl_inp');
-  try{ navigator.clipboard.writeText(el.value); } catch(e){}
-  el.select(); document.execCommand('copy');
+  const el=document.getElementById('surl_inp');
+  try{navigator.clipboard.writeText(el.value);}catch(e){}
+  el.select();document.execCommand('copy');
   toast('تم نسخ الرابط');
 }
-function wa(){ window.open('https://wa.me/?text='+encodeURIComponent('لوحة الأداء الطبي — المدينة الطبية الجامعية KSUMC 2026\n'+location.href)); }
-function em(){ window.open('mailto:?subject=لوحة الأداء KSUMC 2026&body='+encodeURIComponent(location.href)); }
+function wa(){ window.open('https://wa.me/?text='+encodeURIComponent('لوحة الاداء الطبي — المدينة الطبية الجامعية KSUMC 2026\n'+location.href)); }
+function em(){ window.open('mailto:?subject=لوحة الاداء KSUMC 2026&body='+encodeURIComponent(location.href)); }
 
-// ==================== EXPORT ====================
 function exportCSV(){
-  const headers = ['الشهر','حرجة منقولة','حرجة غير منقولة','إجمالي حرجة','نقل داخلي','نقل خارجي','إجمالي نقل','مشاركة داخلية','مشاركة خارجية','إجمالي مشاركات'];
-  const rows = MN.map((m,i)=>[
-    m, DATA.trans[i], DATA.nontrans[i], DATA.trans[i]+DATA.nontrans[i],
-    DATA.trin[i], DATA.trout[i], DATA.trin[i]+DATA.trout[i],
-    DATA.partin[i], DATA.partout[i], DATA.partin[i]+DATA.partout[i]
+  const headers=['الشهر','حرجة منقولة','حرجة غير منقولة','اجمالي حرجة','نقل داخلي','نقل خارجي','اجمالي نقل','مشاركة داخلية','مشاركة خارجية','اجمالي مشاركات','اخلاء طبي'];
+  const rows=MN.map((m,i)=>[
+    m,DATA.trans[i],DATA.nontrans[i],DATA.trans[i]+DATA.nontrans[i],
+    DATA.trin[i],DATA.trout[i],DATA.trin[i]+DATA.trout[i],
+    DATA.partin[i],DATA.partout[i],DATA.partin[i]+DATA.partout[i],
+    DATA.evac[i]
   ]);
-  const csv = [headers, ...rows].map(r=>r.join(',')).join('\n');
-  const a = document.createElement('a');
-  a.href = 'data:text/csv;charset=utf-8,\uFEFF' + encodeURIComponent(csv);
-  a.download = 'KSUMC_2026.csv';
+  const csv=[headers,...rows].map(r=>r.join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);
+  a.download='KSUMC_2026.csv';
   a.click();
 }
 
 function copyTbl(){
-  const rows = MN.map((m,i)=>[
-    m, DATA.trans[i], DATA.nontrans[i], DATA.trans[i]+DATA.nontrans[i],
-    DATA.trin[i], DATA.trout[i], DATA.trin[i]+DATA.trout[i],
-    DATA.partin[i], DATA.partout[i], DATA.partin[i]+DATA.partout[i]
+  const rows=MN.map((m,i)=>[
+    m,DATA.trans[i],DATA.nontrans[i],DATA.trans[i]+DATA.nontrans[i],
+    DATA.trin[i],DATA.trout[i],DATA.trin[i]+DATA.trout[i],
+    DATA.partin[i],DATA.partout[i],DATA.partin[i]+DATA.partout[i],
+    DATA.evac[i]
   ].join('\t'));
-  try{ navigator.clipboard.writeText(rows.join('\n')); } catch(e){}
+  try{navigator.clipboard.writeText(rows.join('\n'));}catch(e){}
   toast('تم النسخ — الصق مباشرة في Excel');
 }
 
-// ==================== PAGE NAV ====================
-function showPage(id, btn){
+function showPage(id,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
-  const pg = document.getElementById(id);
+  const pg=document.getElementById(id);
   if(pg) pg.classList.add('active');
   if(btn) btn.classList.add('active');
 }
 
-// ==================== TOAST ====================
 function toast(m){
-  const t = document.getElementById('toast');
-  t.textContent = m;
+  const t=document.getElementById('toast');
+  t.textContent=m;
   t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2800);
+  setTimeout(()=>t.classList.remove('show'),2800);
 }
 
-// ==================== INIT ====================
 window.addEventListener('DOMContentLoaded',()=>{
   loadHash();
   if(isAdmin()){
-    document.getElementById('editBtn').style.display = 'inline-flex';
-    document.getElementById('loginBtn').textContent = 'خروج الأدمن';
+    document.getElementById('editBtn').style.display='inline-flex';
+    document.getElementById('loginBtn').textContent='خروج الادمن';
   }
   renderAll();
 });
